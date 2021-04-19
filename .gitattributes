@@ -1,0 +1,12 @@
+# Forza i line endings come Linux (\n invece di \r\n di Windows)
+*.txt text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.tex text eol=lf
+*.dic text eol=lf
+*.aff text eol=lf
+*.sh text eol=lf
+
+.gitattributes text eol=lf
+.gitignore text eol=lf
+Makefile text eol=lf

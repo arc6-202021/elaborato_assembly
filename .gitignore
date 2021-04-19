@@ -1,0 +1,6 @@
+# La cartella con la relazione compilata
+# non viene memorizzata da git
+docs_build
+
+# Ignora il file che specifica gli errori di spelling
+spellcheck.temp

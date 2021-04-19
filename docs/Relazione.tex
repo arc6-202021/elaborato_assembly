@@ -1,0 +1,116 @@
+% Inizia documento "articolo" con 
+% margini per foglio A4, 11 punti
+\documentclass[a4paper,11pt]{article}
+
+
+% -- ESTENSIONI
+\usepackage[T1]{fontenc}    % Codifica di caratteri T1
+\usepackage[utf8]{inputenc} % Permette di usare caratteri UTF8
+\usepackage[italian]{babel} % Imposta lingua italiana
+
+% Permetti a latex di leggere le variabili d'ambiente
+\usepackage{catchfile}
+
+% Permette syntax highlighting del codice
+\usepackage[outputdir=../docs_build]{minted}
+
+% TOC con collegamenti ipertestuali
+\usepackage{hyperref}
+
+% Importa file .tex
+\usepackage{subfiles}
+
+
+% -- DEFINIZIONE COMANDI
+
+% Definisci comando "getenv" per ottenere il valore delle variabili d'ambiente
+% e leggere gli autori del progetto
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+
+
+% -- PREAMBOLO
+
+% titolo in grassetto
+\title{
+	\textbf{
+		Elaborato Assembly \\ 
+		\noindent\rule{6cm}{0.4pt} \\  % riga orizzontale intermedia
+		Architettura degli Elaboratori
+	}
+}
+
+% ottieni gli autori dalle variabili d'ambiente
+\author{
+	\getenv{asm_rel_author1} \\
+	\getenv{asm_rel_author2} \\	
+	\getenv{asm_rel_author3}
+}
+
+% definisci data di scrittura
+\date{Anno 2020/2021}
+
+
+% -- INIZIO DOCUMENTO
+
+\begin{document}
+
+% - PAGINA CON TITOLO
+
+% togli il numero di pagina dalla prima pagina
+\pagenumbering{gobble}
+
+% visualizza titolo, autori e data
+\null  % Empty line
+\nointerlineskip  % No skip for prev line
+\vfill
+\let\snewpage \newpage
+\let\newpage \relax
+\maketitle
+\let \newpage \snewpage
+\vfill 
+\break % page break
+
+% vai nella nuova pagina
+\newpage
+% riattiva la numerazione delle pagine
+\pagenumbering{arabic}
+
+
+% - PAGINA CON INDICE
+\tableofcontents
+\newpage
+
+
+% - PAGINA CON INTRODUZIONE
+\section{Introduzione}
+\subfile{sections/1_intro}
+\newpage
+
+
+% - PAGINA CON INFO RELATIVE ALLE VARIABILI
+\section{Variabili}
+\subfile{sections/2_variables}
+\newpage
+
+
+% - PAGINA CON INFO RELATIVE ALLE FUNZIONI
+\section{Funzioni}
+\subfile{sections/3_functions}
+\newpage
+
+
+% - PAGINA CON IL DIAGRAMMA DI FLUSSO OPPURE DEL PSEUDO-CODICE
+\section{Diagramma di flusso o pseudo-codice}
+\subfile{sections/4_code}
+\newpage
+
+
+% - PAGINA CON LE SCELTE PROGETTUALI
+\section{Scelte progettuali}
+\subfile{sections/5_design_choices}
+\newpage
+
+
+\end{document}

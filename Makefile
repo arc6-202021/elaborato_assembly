@@ -27,7 +27,7 @@
 # * make clean_win: cancella la cartella build della documentazione
 
 # crea in questa cartella una cartella "docs_build" con la documentazione in formato PDF
-build_docs_cmd = pdflatex --output-dir=../docs_build --shell-escape Relazione.tex
+build_docs_cmd = pdflatex -interaction=nonstopmode --output-dir=../docs_build --shell-escape Relazione.tex
 
 
 .PHONY: help
@@ -60,7 +60,7 @@ Relazione.pdf:
 	cd docs && $(build_docs_cmd)
 
 	# tenta di avviare il browser preferito con il pdf aperto
-	sensible-browser file://$(pwd)/docs_build/Relazione.pdf || echo ""
+	sensible-browser file://$(shell pwd)/docs_build/Relazione.pdf || echo ""
 
 .PHONY: watch_relazione
 watch_relazione:
@@ -71,7 +71,7 @@ watch_relazione:
 	cd docs && $(build_docs_cmd) && $(build_docs_cmd)
 
 	# tenta di avviare il browser preferito con il pdf aperto
-	sensible-browser file://$(pwd)/docs_build/Relazione.pdf || echo ""
+	sensible-browser file://$(shell pwd)/docs_build/Relazione.pdf || echo ""
 
 	# crea la cartella per la build della documentazione
 	mkdir -p docs_build

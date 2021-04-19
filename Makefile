@@ -7,7 +7,7 @@
 #
 # PARAMETRI:
 # * make help: visualizza questa lista dei possibili parametri
-# 
+#
 #  COMPATIBILI SOLO CON LINUX/MAC OS:
 # * make Relazione.pdf: esegue la build della documentazione con pdflatex
 # * make watch_relazione: esegue la build della documentazione automaticamente dopo ogni modifica ai file .tex
@@ -53,7 +53,7 @@ help:
 Relazione.pdf:
 	# crea la cartella per la build della documentazione
 	mkdir -p docs_build
-	
+
 	# Crea la TOC
 	cd docs && $(build_docs_cmd)
 	# Crea la relazione con la TOC
@@ -72,10 +72,10 @@ watch_relazione:
 
 	# tenta di avviare il browser preferito con il pdf aperto
 	sensible-browser file://$(pwd)/docs_build/Relazione.pdf || echo ""
-	
+
 	# crea la cartella per la build della documentazione
 	mkdir -p docs_build
-	
+
 	# controlla se i file nella cartella docs vengono modificati:
 	# se vengono modificati esegui la build della documentazione 2 volte (una per la TOC e una per il PDF)
 	cd docs && when-changed -r . "$(build_docs_cmd) && $(build_docs_cmd)"
@@ -112,7 +112,7 @@ watch_relazione_win:
 
 	@: # tenta di avviare il browser preferito con il pdf aperto
 	explorer "file:///%CD%\docs_build\Relazione.pdf" || echo ""
-	
+
 	@: # controlla se il file Relazione.tex viene modificato:
 	@: # se viene modificato esegui la build della documentazione 2 volte (una per la TOC e una per il PDF)
 	cd docs && when-changed Relazione.tex pdflatex --output-dir=../docs_build --shell-escape Relazione.tex

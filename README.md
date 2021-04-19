@@ -5,6 +5,20 @@ all'elaborato assembly per architettura degli elaboratori (anno 2020/2021).
 
 I file presenti in questo repository sono:
 
+* **.editorconfig**: dice agli editor che supportano questo file di configurazione
+    come devono essere strutturati i file:
+    > NOTA: per certi editor, come vscode, e' necessario scaricare un'estensione per attuare le configurazioni
+
+    La configurazione impone:
+    * End Of Line Linux (\n e non \r\n come vorrebbe Windows)
+    * Tutti i file terminano con una riga vuota
+    * Tutti gli spazi a fine riga vengono automaticamente rimossi
+    * Tutte le spaziature nel file ```Makefile``` verranno convertite in tab
+    * Tutte le altre spaziature nei file markdown, json, assembly, C, C header, ... Verranno convertite in spazi (un'indentazione sono 4 spazi)
+    * Il set di caratteri dei file elencati qui sopra sono UTF-8
+
+* **.gitattributes**: dice a git di forzare il EOF Linux (\n e non \r\n come vorrebbe Windows) per i file di testo
+
 * **.gitignore**: dice a git di non tracciare alcuni file
     > Vengono ignorati:
     > * i file post-build della relazione/documentazione

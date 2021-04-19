@@ -2,7 +2,10 @@ apparira
 ascii
 asm
 Ctrl
+editorconfig
+EOF
 ezwinports
+gitattributes
 gitignore
 hunspell
 int
@@ -23,5 +26,6 @@ rel
 sh
 tex
 tmp
+UTF
 verra
 vscode

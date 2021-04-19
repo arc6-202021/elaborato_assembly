@@ -14,7 +14,7 @@ trim_trailing_whitespace = true
 indent_style = tab
 
 # Identazione file assembly
-[**.{c, h, s, sh, json, md, tex}]
+[**.{c, h, s, sh, json, md, tex, yml}]
 charset = utf-8
 indent_style = space
 indent_size = 4

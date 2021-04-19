@@ -1,6 +1,6 @@
 ## RELAZIONE
 
-Questa cartella contiene i file sorgente LaTex della relazione.
+Questa cartella contiene i file sorgente LaTeX della relazione.
 
 In teoria il file ```Relazione.tex``` non e' necessario modificarlo:
 

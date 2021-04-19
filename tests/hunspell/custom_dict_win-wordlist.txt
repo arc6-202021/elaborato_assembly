@@ -13,7 +13,7 @@ endlinechar
 fi
 textbf
 modalit
- 
+
 textit
 newpage
 subfile
@@ -31,3 +31,4 @@ noindent
 nointerlineskip
 prev
 rel
+modalita

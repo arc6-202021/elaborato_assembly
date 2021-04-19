@@ -56,7 +56,7 @@ echo -e "\n=========================================================\n"
 printf "" > "${SCRIPTPATH}/spellcheck.temp"
 
 # trova in code, file di tipo "file", nome qualsiasi ("*") che finisce con estensione ".tex":
-# per ogni file aggiungi il suo percorso al file temporaneo, usa hunspell per trovare gli errori di spelling e inserisci l'output nel file temporaneo 
+# per ogni file aggiungi il suo percorso al file temporaneo, usa hunspell per trovare gli errori di spelling e inserisci l'output nel file temporaneo
 find "$CODEPATH" -type f -iname "*.tex" -exec echo '{}' >> "${SCRIPTPATH}/spellcheck.temp" \; -exec hunspell -d en-GB,it_IT,custom_dict -l -u '{}' >> "${SCRIPTPATH}/spellcheck.temp" \;
 
 # se rimane 0, il file temporaneo contiene solo i percorsi degli script

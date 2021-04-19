@@ -1,7 +1,7 @@
-This dictionary was initially based on a subset of the 
-original English wordlist created by Kevin Atkinson for 
-Pspell and  Aspell and thus is covered by his original 
-LGPL licence. 
+This dictionary was initially based on a subset of the
+original English wordlist created by Kevin Atkinson for
+Pspell and  Aspell and thus is covered by his original
+LGPL licence.
 
 It has been extensively updated by David Bartlett, Brian Kelk
 and Andrew Brown:
@@ -11,20 +11,20 @@ and Andrew Brown:
 - many errors have been corrected
 - compound hyphenated words have been added where appropriate
 
-Valuable inputs to this process were received from many other 
+Valuable inputs to this process were received from many other
 people - far too numerous to name. Serious thanks to you all
 for your greatly appreciated help.
 
 This word list is intended to be a good representation of
-current modern British English and thus it should be a good 
-basis for Commonwealth English in most countries of the world 
+current modern British English and thus it should be a good
+basis for Commonwealth English in most countries of the world
 outside North America.
 
 The affix file has been created completely from scratch
-by David Bartlett and Andrew Brown, based on the published 
+by David Bartlett and Andrew Brown, based on the published
 rules for MySpell and is also provided under the LGPL.
 
-In creating the affix rules an attempt has been made to 
+In creating the affix rules an attempt has been made to
 reproduce the most general rules for English word
 formation, rather than merely use it as a means to
 compress the size of the dictionary. It is hoped that this
@@ -1162,7 +1162,7 @@ V2.09 - 1-FEB-2014
 1047) vermiculture
 1048) nitrochalk
 1049) unreactive (merged into reactive)
-1050) bronzy 
+1050) bronzy
 1051) bronzer (merged into bronze)
 1052) reliefs (plural)
 1053) superalloy
@@ -1339,7 +1339,7 @@ V2.10 - 1-MAR-2014
 1220) predate (+ed)
 1221) Boole (name + 's)
 1222) phenotypic (merged into phenotype)
-1223) phenotypical 
+1223) phenotypical
 1224) phenotypically (merged into phenotypical)
 1225) triploid (+plural)
 1226) tetraploid (+plural)
@@ -2672,7 +2672,7 @@ V2.13 - 1-JUN-2014
 2534) circumnavigator
 2535) subalpine
 2536) treeline
-2537) boreal + Boreal 
+2537) boreal + Boreal
 2538) geotechnic (+s)
 2539) geotechnical
 2540) geothermally (merged into geothermal)

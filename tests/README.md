@@ -5,7 +5,7 @@ Contiene i file di test del progetto.
 * **SPELLING**: la cartella **hunspell** contiene i file dizionario con le parole accettate da hunspell,
   usato per assicurarsi che non ci siano errori di spelling.
     > Questi file vengono usati da hunspell quando vengono eseguiti i comandi:
-    >   
+    >
     >     make spellcheck     # Linux/Mac OS
     >     ./spellcheck.sh     # Linux/Mac OS
     >

@@ -42,7 +42,7 @@ Puoi trovare alcune delle vecchie versioni del dizionario qui:
 - http://sourceforge.net/projects/ooodocs/
 - http://xoomer.virgilio.it/alessandro.prina/
 
-Ulteriori informazioni circa questo dizionario, gli autori e chi ha contribuito, possono essere reperite visitando la pagina: 
+Ulteriori informazioni circa questo dizionario, gli autori e chi ha contribuito, possono essere reperite visitando la pagina:
  http://it.openoffice.org/contribuire/spellcheck.html
 
 Per contattare gli autori è possibile scrivere a:
@@ -52,7 +52,7 @@ Per contattare gli autori è possibile scrivere a:
 ***********  English  ************
 **********************************
 
-This dictionary is released under GPL license version 2.0 or above. 
+This dictionary is released under GPL license version 2.0 or above.
 You can find the text of the license on http://www.gnu.org/ (http://www.gnu.org/licenses/gpl.txt)
 
 With this file (README.txt) you must find:
@@ -66,9 +66,9 @@ With this file (README.txt) you must find:
 * thanks.txt (file with volunteer names)
 * notes.txt (file with additional notes about acutual dictionary version)
 
-You can find new Italian dictionary versions here: 
+You can find new Italian dictionary versions here:
  http://sourceforge.net/projects/linguistico/
- 
+
 You can find some old Italian dictionary versions here:
 - http://sourceforge.net/projects/ooodocs/
 - http://xoomer.virgilio.it/alessandro.prina/

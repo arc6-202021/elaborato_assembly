@@ -49,7 +49,7 @@ a) in automatico, grazie a due comodi installer creati da membri della comunità
 
 Nota: non è detto che l'aggiornamento automatico prelevi l'ultima versione del dizionario, in alcuni casi potrebbe addirittura installare una versione più vecchia rispetto a quella presente sul proprio sistema
 
-La versione per MS Windows si trova su 
+La versione per MS Windows si trova su
 
 http://www.ooodocs.org/dictinstall/
 
@@ -74,12 +74,12 @@ Per le versioni ufficiali Sun:
 
 Se il vostro sistema operativo è differente e/o non riuscite a trovare la directory in cui effettuare l'installazione, allora è possibile cercare il file dictionary.lst; la directory dove trovare questo file è quella in cui dovete installare il dizionario.
 
-Aprite in un qualsiasi editor di testo il file dictionary.lst che troverete nella cartella citata precedentemente, in modo da poter inserire il codice della lingua e della regione che vi interessa. 
+Aprite in un qualsiasi editor di testo il file dictionary.lst che troverete nella cartella citata precedentemente, in modo da poter inserire il codice della lingua e della regione che vi interessa.
 
-Per esempio: 
+Per esempio:
 nel vostro editor di testo aggiungete questa linea al file dictionary.lst:
 
-DICT it IT it_IT 
+DICT it IT it_IT
 
 ATTENZIONE: la riga sopra indicata non deve iniziare con il simbolo #, altrimenti l'istruzione è commentata e di conseguenza non è eseguita. È indispensabile che siano rispettati i caratteri maiuscoli e minuscoli come riportato nell'esempio, altrimenti non funziona. Inoltre è consigliabile controllare che tale riga sia presente una sola volta nel file, altrimenti il dizionario verrà caricato più volte (una volta per ogni riga presente) causando uno spreco di memoria RAM e l'inconveniente di fornire più volte gli stessi suggerimenti alle parole errate.
 
@@ -99,9 +99,9 @@ Strumenti->Opzioni->Impostazioni Lingua->Lingue (Tools->Options->Language settin
 2) Impostate nell'elenco a discesa che vedete sulla destra la lingua italiana quale linguaggio di default per i vostri documenti
 3)selezionando l'elemento Linguistica (Writing Aids)che troverete nella sezione Impostazioni Lingua (Language Settings) e premendo il tasto di modifica della sezione Moduli Linguistici Disponibili (Available language modules) collocato sulla destra della finestra di dialogo, potrete accedere alla sezione che vi permetterà di impostare il correttore in italiano. Sarà sufficiente scegliere la nostra lingua dall'elenco a discesa che mostra tutti i dizionari disponibili nella Suite, facendo attenzione a selezionare con un segno di spunta, la funzione di correzione ortografica nel riquadro immediatamente sottostante l'elenco a discesa.
 
-Attenzione: La denominazione dei comandi di menù o delle finestre può subire un cambiamento o la loro collocazione può essere modificata nel passaggio da una versione ad un'altra. 
+Attenzione: La denominazione dei comandi di menù o delle finestre può subire un cambiamento o la loro collocazione può essere modificata nel passaggio da una versione ad un'altra.
 
-Attenzione: gli utenti di OpenOffice.org per MS Windows, devono riavviare anche il quickstarter della Suite, la piccola icona con i gabbiani (versione 1.0) che dovrebbe apparire sulla System Tray nell'angolo in basso a destra dello schermo, proprio a fianco dell'orologio di sistema. È sufficiente cliccare col tasto destro del mouse sull'icona e scegliere esci o exit dal menù di contesto. Successivamente, si dovrà effettuare l'installazione del dizionario, mantenendo disattivato il quickstarter durante tutta la procedura, chiudere il documento dal quale si sono modificate le opzioni generali e riaprirne uno nuovo per verificare il funzionamento del correttore italiano. 
+Attenzione: gli utenti di OpenOffice.org per MS Windows, devono riavviare anche il quickstarter della Suite, la piccola icona con i gabbiani (versione 1.0) che dovrebbe apparire sulla System Tray nell'angolo in basso a destra dello schermo, proprio a fianco dell'orologio di sistema. È sufficiente cliccare col tasto destro del mouse sull'icona e scegliere esci o exit dal menù di contesto. Successivamente, si dovrà effettuare l'installazione del dizionario, mantenendo disattivato il quickstarter durante tutta la procedura, chiudere il documento dal quale si sono modificate le opzioni generali e riaprirne uno nuovo per verificare il funzionamento del correttore italiano.
 
 Questo è tutto, il correttore ortografico in italiano dovrebbe funzionare in modo adeguato.
 
@@ -193,33 +193,33 @@ In the case the dictionary doesn't still work or you wish to upgarde the version
 Note: new dictionary versions are avaiable from here: http://sourceforge.net/projects/linguistico/
 
 a)	To install these dictionaries in OOo build 641c and greater:
-  A.	Unzip the dictionary files, *.aff and *.dic, 
+  A.	Unzip the dictionary files, *.aff and *.dic,
 		into your <OpenOffice.org>\user\wordbook\*.*  directory
 
 Attention: since OpenOffice.org 1.0.1 the right folder for the dictionary is <OpenOffice.org>\share\dict\ooo
 
-  B.	Edit the dictionary.lst file that is in that same directory 
-		using any text editor to register a dictionary for a specific 
+  B.	Edit the dictionary.lst file that is in that same directory
+		using any text editor to register a dictionary for a specific
 		locale (the same dictionary can be registered for multiple locales).
 
-For example: 
+For example:
 To add the it_IT.zip dictionary under the Italian (Italy) locale to OOo you would:
 cd <OpenOffice.org641>\user\wordbook (or <OpenOffice.org>\share\dict\ooo)
-unzip it_IT.zip  
+unzip it_IT.zip
 
 
 b)		And then, using any text editor, add the following line to dictionary.lst:
 		DICT it IT it_IT
 
-This line tells OOo to register the affix file it_IT.aff and the wordlist it_IT.dic 
+This line tells OOo to register the affix file it_IT.aff and the wordlist it_IT.dic
 to the locale it IT, which is Italian (Italy). The specific fields of this line are:
 
 Field 1: Entry Type "DICT" is the only supported entry type so far
 Field 2: Language code from Locale "en" or "it" or "pt" ...
 				(see {ISO Language Code} page)
-Field 3: Country code from Locale "IT"  ... 
+Field 3: Country code from Locale "IT"  ...
 				(see {ISO Country Code} page)
-Field 4: Root name of Dictionary "italian" or "it_it"  ... 
+Field 4: Root name of Dictionary "italian" or "it_it"  ...
 				(do not add the .aff or .dic extensions to the name)
 
 
@@ -227,8 +227,8 @@ c) Start up OpenOffice.org. and go to:
 
 Tools->Options->LanguageSettings->WritingAids
 
-Hit "Edit" and use the pull down menu to select your locale, Italy, 
-and then make sure to check the MySpell SpellChecker for that locale. 
+Hit "Edit" and use the pull down menu to select your locale, Italy,
+and then make sure to check the MySpell SpellChecker for that locale.
 
 That it! Your dictionary is installed and registered for that language.
 
@@ -250,7 +250,7 @@ Here is some programs that can use this dictionary:
   spell checking only upon request
   http://www.mozilla.org
 * Mozilla-FireFox: with SpellBound extension
-  spell checking when you type or upon request 
+  spell checking when you type or upon request
   Note: the dictionary is installed under a different directory
   http://spellbound.sourceforge.net/
 * Mozilla-ThunderBird: with "Thunderbird In-Line SpellChecker" extension
@@ -259,7 +259,7 @@ Here is some programs that can use this dictionary:
 Note: you can download dictionary at mozilla site: http://www.mozdev.org/
 
 * ...
-		      
+
 
 ************************************************************
 5. Other spell checking program that can use this dictionary

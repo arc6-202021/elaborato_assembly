@@ -29,7 +29,7 @@
 # http://www.fsf.org/licenses/licenses.html
 
 SET ISO8859-15
-TRY aeiouàéìòùèAEIOUsnrtlcdgmpqhbyfvkwzjxSNRTLCDGMPQHBYFVKWZJX
+TRY aeiouï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AEIOUsnrtlcdgmpqhbyfvkwzjxSNRTLCDGMPQHBYFVKWZJX
 
 SFX A Y 225
 SFX A e 0 are
@@ -116,31 +116,31 @@ SFX A re vate are
 SFX A re vano are
 SFX A re i are
 SFX A re sti are
-SFX A are ò are
+SFX A are ï¿½ are
 SFX A re mmo are
 SFX A re ste are
 SFX A e ono are
-SFX A are erò [^cgi]are
+SFX A are erï¿½ [^cgi]are
 SFX A are erai [^cgi]are
-SFX A are erà [^cgi]are
+SFX A are erï¿½ [^cgi]are
 SFX A are eremo [^cgi]are
 SFX A are erete [^cgi]are
 SFX A are eranno [^cgi]are
-SFX A are herò [cg]are
+SFX A are herï¿½ [cg]are
 SFX A are herai [cg]are
-SFX A are herà [cg]are
+SFX A are herï¿½ [cg]are
 SFX A are heremo [cg]are
 SFX A are herete [cg]are
 SFX A are heranno [cg]are
-SFX A are erò [^cg]iare
+SFX A are erï¿½ [^cg]iare
 SFX A are erai [^cg]iare
-SFX A are erà [^cg]iare
+SFX A are erï¿½ [^cg]iare
 SFX A are eremo [^cg]iare
 SFX A are erete [^cg]iare
 SFX A are eranno [^cg]iare
-SFX A iare erò [cg]iare
+SFX A iare erï¿½ [cg]iare
 SFX A iare erai [cg]iare
-SFX A iare erà [cg]iare
+SFX A iare erï¿½ [cg]iare
 SFX A iare eremo [cg]iare
 SFX A iare erete [cg]iare
 SFX A iare eranno [cg]iare
@@ -335,15 +335,15 @@ SFX B re vano ere
 SFX B re i ere
 SFX B re tti ere
 SFX B re sti ere
-SFX B ere é ere
+SFX B ere ï¿½ ere
 SFX B re tte ere
 SFX B re mmo ere
 SFX B re ste ere
 SFX B e ono ere
 SFX B re ttero ere
-SFX B e ò ere
+SFX B e ï¿½ ere
 SFX B e ai ere
-SFX B e à ere
+SFX B e ï¿½ ere
 SFX B 0 mo ere
 SFX B 0 te ere
 SFX B e anno ere
@@ -440,13 +440,13 @@ SFX C re vate ire
 SFX C re vano ire
 SFX C re i ire
 SFX C re sti ire
-SFX C ire ì ire
+SFX C ire ï¿½ ire
 SFX C re mmo ire
 SFX C re ste ire
 SFX C e ono ire
-SFX C e ò ire
+SFX C e ï¿½ ire
 SFX C e ai ire
-SFX C e à ire
+SFX C e ï¿½ ire
 SFX C 0 mo ire
 SFX C 0 te ire
 SFX C e anno ire
@@ -956,7 +956,7 @@ SFX P re cevi are
 SFX P re cevo are
 SFX P re i are
 SFX P re nno are
-SFX P e à are
+SFX P e ï¿½ are
 SFX P e ai are
 SFX P e anno are
 SFX P 0 bbe are
@@ -967,7 +967,7 @@ SFX P 0 mo are
 SFX P 0 ste are
 SFX P 0 sti are
 SFX P 0 te are
-SFX P e ò are
+SFX P e ï¿½ are
 SFX P re te are
 SFX P re tto are
 SFX P are ece are
@@ -1442,7 +1442,7 @@ SFX V rre ciamo urre
 SFX V rre ciate urre
 SFX V rre co urre
 SFX V rre cono urre
-SFX V e à urre
+SFX V e ï¿½ urre
 SFX V e ai urre
 SFX V e anno urre
 SFX V 0 bbe urre
@@ -1453,7 +1453,7 @@ SFX V 0 mo urre
 SFX V 0 ste urre
 SFX V 0 sti urre
 SFX V 0 te urre
-SFX V e ò urre
+SFX V e ï¿½ urre
 SFX V rre sse urre
 SFX V rre ssero urre
 SFX V rre ssi urre
@@ -1481,7 +1481,7 @@ SFX V rre ngono orre
 SFX V rre ni orre
 SFX V rre niamo orre
 SFX V rre niate orre
-SFX V e à orre
+SFX V e ï¿½ orre
 SFX V e ai orre
 SFX V e anno orre
 SFX V 0 bbe orre
@@ -1492,7 +1492,7 @@ SFX V 0 mo orre
 SFX V 0 ste orre
 SFX V 0 sti orre
 SFX V 0 te orre
-SFX V 0 ò orre
+SFX V 0 ï¿½ orre
 SFX V rre se orre
 SFX V rre sero orre
 SFX V rre si orre
@@ -1520,7 +1520,7 @@ SFX V rre ggono arre
 SFX V rre i arre
 SFX V rre iamo arre
 SFX V rre iate arre
-SFX V e à arre
+SFX V e ï¿½ arre
 SFX V e ai arre
 SFX V e anno arre
 SFX V 0 bbe arre
@@ -1531,7 +1531,7 @@ SFX V 0 mo arre
 SFX V 0 ste arre
 SFX V 0 sti arre
 SFX V 0 te arre
-SFX V e ò arre
+SFX V e ï¿½ arre
 SFX V rre sse arre
 SFX V rre ssero arre
 SFX V rre ssi arre
@@ -1803,13 +1803,13 @@ SFX t re vate ire
 SFX t re vano ire
 SFX t re i ire
 SFX t re sti ire
-SFX t ire ì ire
+SFX t ire ï¿½ ire
 SFX t re mmo ire
 SFX t re ste ire
 SFX t e ono ire
-SFX t e ò ire
+SFX t e ï¿½ ire
 SFX t e ai ire
-SFX t e à ire
+SFX t e ï¿½ ire
 SFX t 0 mo ire
 SFX t 0 te ire
 SFX t e anno ire
@@ -1988,31 +1988,31 @@ SFX z re vate are
 SFX z re vano are
 SFX z re i are
 SFX z re sti are
-SFX z are ò are
+SFX z are ï¿½ are
 SFX z re mmo are
 SFX z re ste are
 SFX z e ono are
-SFX z are erò [^cgi]are
+SFX z are erï¿½ [^cgi]are
 SFX z are erai [^cgi]are
-SFX z are erà [^cgi]are
+SFX z are erï¿½ [^cgi]are
 SFX z are eremo [^cgi]are
 SFX z are erete [^cgi]are
 SFX z are eranno [^cgi]are
-SFX z are herò [cg]are
+SFX z are herï¿½ [cg]are
 SFX z are herai [cg]are
-SFX z are herà [cg]are
+SFX z are herï¿½ [cg]are
 SFX z are heremo [cg]are
 SFX z are herete [cg]are
 SFX z are heranno [cg]are
-SFX z are erò [^cg]iare
+SFX z are erï¿½ [^cg]iare
 SFX z are erai [^cg]iare
-SFX z are erà [^cg]iare
+SFX z are erï¿½ [^cg]iare
 SFX z are eremo [^cg]iare
 SFX z are erete [^cg]iare
 SFX z are eranno [^cg]iare
-SFX z iare erò [cg]iare
+SFX z iare erï¿½ [cg]iare
 SFX z iare erai [cg]iare
-SFX z iare erà [cg]iare
+SFX z iare erï¿½ [cg]iare
 SFX z iare eremo [cg]iare
 SFX z iare erete [cg]iare
 SFX z iare eranno [cg]iare
@@ -2070,7 +2070,7 @@ SFX z re tone are
 SFX z re ti are
 SFX z re tivi are
 
-PFX ^ Y 3 # gestione dell'elisione nei nomi dei santi 
+PFX ^ Y 3 # gestione dell'elisione nei nomi dei santi
 PFX ^ 0 sant' [AEIOUH]
 PFX ^ 0 Sant' [AEIOUH]
 PFX ^ 0 SANT' [AEIOUH][QWERTYUIOPLKJHGFDSAZXCVBNM]
@@ -2083,7 +2083,7 @@ SFX | i un i
 SFX | a un a
 SFX | 0 un o
 SFX | 0 due [aoi]
-SFX | 0 tré [aoi]
+SFX | 0 trï¿½ [aoi]
 SFX | 0 quattro [aoi]
 SFX | 0 cinque [aoi]
 SFX | 0 sei [aoi]
@@ -2287,17 +2287,17 @@ PFX " 0 settemila .
 PFX " 0 ottomila .
 PFX " 0 novemila .
 
-SFX £ Y 10 # gestione dei numeri romani 1#2
-SFX £ 0 i [ivxlcdm]
-SFX £ 0 ii [ivxlcdm]
-SFX £ 0 iii [vxlcdm]
-SFX £ 0 iv [xlcdm]
-SFX £ 0 v [ixlcdm]
-SFX £ 0 vi [xlcdm]
-SFX £ 0 vii [xlcdm]
-SFX £ 0 viii [xlcdm]
-SFX £ 0 ix [xlcdm]
-SFX £ 0 x i
+SFX ï¿½ Y 10 # gestione dei numeri romani 1#2
+SFX ï¿½ 0 i [ivxlcdm]
+SFX ï¿½ 0 ii [ivxlcdm]
+SFX ï¿½ 0 iii [vxlcdm]
+SFX ï¿½ 0 iv [xlcdm]
+SFX ï¿½ 0 v [ixlcdm]
+SFX ï¿½ 0 vi [xlcdm]
+SFX ï¿½ 0 vii [xlcdm]
+SFX ï¿½ 0 viii [xlcdm]
+SFX ï¿½ 0 ix [xlcdm]
+SFX ï¿½ 0 x i
 
 PFX $ Y 62 # gestione dei numeri romani 2#2
 PFX $ 0 x [cl]

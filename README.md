@@ -3,6 +3,23 @@
 Questo repository contiene i file relativi
 all'elaborato assembly per architettura degli elaboratori (anno 2020/2021).
 
+<br>
+
+---
+
+## Test Github Actions
+
+|Badge|Descrizione|
+|-----|-----------|
+|[![Spellcheck](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml)|Verifica che lo spelling sia corretto sia nel README.md sia nella documentazione (verifica errori di battitura)|
+|[![Relazione](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml)|Verifica che la build della documentazione sia andata a buon fine (artifact scaricabile da gh actions)|
+
+---
+
+<br>
+
+## Contenuto repository
+
 I file presenti in questo repository sono:
 
 * **.editorconfig**: dice agli editor che supportano questo file di configurazione

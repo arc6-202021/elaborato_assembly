@@ -18,3 +18,21 @@ indent_style = tab
 charset = utf-8
 indent_style = space
 indent_size = 4
+
+# Ignore main
+[**/main.c]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
+# Ignore txt files (input files)
+[**/*.txt]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset

@@ -4,3 +4,7 @@ docs_build
 
 # Ignora il file che specifica gli errori di spelling
 spellcheck.temp
+
+# Ignora cartelle con file oggetto e binari
+**/bin/
+**/obj/

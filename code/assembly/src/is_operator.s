@@ -29,30 +29,30 @@ is_operator:
     cmpb $42, %BL             # prodotto '*'
     jne is_operator_not_prod  # salta se non e' prodotto
     xorl %EAX, %EAX           # EAX = 0
-    jmp fine                  # so che e' prodotto, restituisci EAX
+    jmp is_operator_end       # so che e' prodotto, restituisci EAX
 
 is_operator_not_prod:
     # if t_CHAR == 43: EAX = 0
     cmpb $43, %BL             # somma '+'
     jne is_operator_not_sum   # salta se non e' somma
     xorl %EAX, %EAX           # EAX = 0
-    jmp fine                  # so che e' somma, restituisci EAX
+    jmp is_operator_end       # so che e' somma, restituisci EAX
 
 is_operator_not_sum:
     # if t_CHAR == 45: EAX = 0
     cmpb $45, %BL             # sottrazione '-'
     jne is_operator_not_sub   # salta se non e' sottrazione
     xorl %EAX, %EAX           # EAX = 0
-    jmp fine                  # so che e' sottrazione, restituisci EAX
+    jmp is_operator_end       # so che e' sottrazione, restituisci EAX
 
 is_operator_not_sub:
     # if t_CHAR == 47: EAX = 0
     cmpb $47, %BL             # divisione '/'
-    jne fine                  # salta se non e' divisione
+    jne is_operator_end       # salta se non e' divisione
     xorl %EAX, %EAX           # EAX = 0
                               # so che e' divisione, restituisci EAX
 
-fine:
+is_operator_end:
     # Ripristina stack e esegui return
     popl %EBX                # Reimposta EBX
     popl %EBP                # Reimposta EBP

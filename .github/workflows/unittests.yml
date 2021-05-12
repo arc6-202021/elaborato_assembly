@@ -1,0 +1,16 @@
+
+name: Unit tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Unit test
+      run: |
+        cd tests/unit_tests
+        make
+        ./bin/test_all

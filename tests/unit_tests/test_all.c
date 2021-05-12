@@ -33,6 +33,17 @@ int main() {
         strcpy(func_name, "test_is_operand()\0");
     }
 
+    // test_is_valid_char.c
+
+    printf("Test is_valid_char():\n");
+    func_res = test_is_valid_char();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_is_valid_char()\0");
+    }
+
     // END OF TESTS
 
     if (res == 0) {

@@ -4,4 +4,7 @@
 extern int is_operator(char t_char);  // funzione assembly
 extern int test_is_operator();
 
+extern int is_operand(char t_char);  // funzione assembly
+extern int test_is_operand();
+
 #endif

@@ -22,6 +22,17 @@ int main() {
         strcpy(func_name, "test_is_operator()\0");
     }
 
+    // test_is_operand.c
+
+    printf("Test is_operand():\n");
+    func_res = test_is_operand();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_is_operand()\0");
+    }
+
     // END OF TESTS
 
     if (res == 0) {

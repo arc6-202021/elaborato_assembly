@@ -1,0 +1,21 @@
+
+name: Prototype test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Python
+      uses: actions/setup-python@v2.2.1
+      with:
+        python-version: 3.8
+    - name: Run prototype
+      run: |
+        cd code/python
+        python3 postfix_calculator.py dev
+        python3 postfix_calculator2.py dev
+        python3 postfix_calculator3.py dev

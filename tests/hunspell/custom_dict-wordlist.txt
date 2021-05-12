@@ -1,11 +1,15 @@
 apparira
+artifact
 ascii
 asm
+br
 Ctrl
 editorconfig
 EOF
 ezwinports
+gh
 gitattributes
+Github
 gitignore
 hunspell
 int

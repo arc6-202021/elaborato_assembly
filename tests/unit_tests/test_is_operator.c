@@ -34,6 +34,6 @@ int test_is_operator() {
 
     // basta che uno solo dei caratteri NON
     // restituisca il risultato atteso e
-    // verra' restituito '1' al SO
+    // verra' restituito '1'
     return success_flag;
 }

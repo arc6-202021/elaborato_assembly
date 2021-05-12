@@ -50,7 +50,7 @@ is_operator_not_sub:
     cmpb $47, %BL             # divisione '/'
     jne fine                  # salta se non e' divisione
     xorl %EAX, %EAX           # EAX = 0
-    jmp fine                  # so che e' divisione, restituisci EAX
+                              # so che e' divisione, restituisci EAX
 
 fine:
     # Ripristina stack e esegui return

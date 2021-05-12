@@ -13,6 +13,7 @@ all'elaborato assembly per architettura degli elaboratori (anno 2020/2021).
 |-----|-----------|
 |[![Spellcheck](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml)|Verifica che lo spelling sia corretto sia nel README.md sia nella documentazione (verifica errori di battitura)|
 |[![Relazione](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml)|Verifica che la build della documentazione sia andata a buon fine (artifact scaricabile da gh actions)|
+|[![Unit tests](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml)|Si assicura che le singole funzioni assembly restituiscano il risultato atteso|
 
 ---
 

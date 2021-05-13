@@ -14,6 +14,7 @@ all'elaborato assembly per architettura degli elaboratori (anno 2020/2021).
 |[![Spellcheck](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/spellcheck.yml)|Verifica che lo spelling sia corretto sia nel README.md sia nella documentazione (verifica errori di battitura)|
 |[![Relazione](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml)|Verifica che la build della documentazione sia andata a buon fine (artifact scaricabile da gh actions)|
 |[![Unit tests](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml)|Si assicura che le singole funzioni assembly restituiscano il risultato atteso|
+|[![Prototype test](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/prototype_test.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/prototype_test.yml)|Verifica il funzionamento dei prototipi scritti in Python|
 
 ---
 
@@ -35,13 +36,16 @@ I file presenti in questo repository sono:
     * Tutte le altre spaziature nei file markdown, json, assembly, C, C header, ... Verranno convertite in spazi (un'indentazione sono 4 spazi)
     * Il set di caratteri dei file elencati qui sopra sono UTF-8
 
-* **.gitattributes**: dice a git di forzare il EOF Linux (\n e non \r\n come vorrebbe Windows) per i file di testo
+* **.gitattributes**: dice a git di forzare il EOL Linux (\n e non \r\n come vorrebbe Windows) per i file di testo
 
 * **.gitignore**: dice a git di non tracciare alcuni file
     > Vengono ignorati:
     > * i file post-build della relazione/documentazione
     > * il file spellcheck.tmp, creato da ```spellcheck.sh``` quando ci sono errori di spelling nella documentazione
     >   (contiene questi errori di spelling)
+    > * i file oggetto e binari ottenuti da codice C + assembly
+
+* **LICENSE.txt**: file della licenza MIT
 
 * **Makefile**: file eseguito da ```make```, utility che esegue comandi che eseguono le build delle varie componenti del progetto
     > Per utilizzare il file eseguire il comando ```make``` seguito da uno dei seguenti parametri:
@@ -89,8 +93,12 @@ I file presenti in questo repository sono:
 
 Le cartelle presenti in questo repository sono:
 
+* **.github**: contiene file di configurazione per dependabot (verifica che le dipendenze dei software siano aggiornate) e per github actions (nella cartella workflows sono presenti le varie configurazioni dei test descritti nella sezione "Test Github Actions")
+
 * **.vscode**: contiene il file ```settings.json``` che dice alla estensione "latex-workshop" per Visual Studio Code di non creare automaticamente il PDF ogni volta che si salvano file .tex
     > Questo perche' il ```Makefile``` si occupera' di questo compito
+
+* **code**: contiene tutto il codice del progetto (sia prototipi in Python sia il progetto finito in C+assembly)
 
 * **docs**: contiene i sorgenti della documentazione scritta in LaTeX
     > Per eseguire la build della documentazione eseguire il comando ```make Relazione.pdf``` su Linux/Mac OS
@@ -116,3 +124,6 @@ Le cartelle presenti in questo repository sono:
 * **tests** contiene i file di test
     * la cartella **hunspell** contiene i dizionari necessari per verificare se ci sono errori di spelling
         > Questi file vengono usati da hunspell quando vengono eseguiti i comandi "```make spellcheck```", "```make spellcheck_win```" e "```./spellcheck.sh```"
+    * la cartella **unit_test** contiene i sorgenti C necessari per compilare le singole funzioni assembly che compongono il progetto
+    per poterle testare
+    * la cartella **e2e_tests** contiene i file di input e di output atteso dell'intero programma. Sono i test finale che "simulano" l'uso da parte dell'utente

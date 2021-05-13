@@ -2,6 +2,12 @@
 
 Questa cartella contiene il codice del progetto.
 
+* La cartella **python** contiene i prototipi, pdf con status del progetto e altri file per descrivere gli algoritmi da riprodurre in assembly
+
+* La cartella assembly contiene il progetto finito: contiene il file main.c e poi tutti i file assembly per far funzionare il programma
+
+<details><summary>IDEA INIZIALE SUL WORKFLOW (clicca per visualizzare)</summary>
+
 Ecco la mia idea su come organizzare il progetto...
 > NOTA: il codice che ho indicato e' pseudo-codice utile solo a indicare il concetto.
 > Dovrebbe essere verosimile ma non e' detto.
@@ -104,3 +110,7 @@ Per suddividere il lavoro direi che i passi sono questi:
 
 * Creiamo (e ampliamo) i test.
     > solo nella fase 1, poi i test rimangono uguali nella seconda fase
+
+
+</details>
+

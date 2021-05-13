@@ -195,13 +195,8 @@ def postfix(t_input):
     :param str t_input: stringa in input con l'espressione
     :param str result: stringa in output con il risultato
     """
-    # guardo se gli elementi contengono caratteri non validi
-    if is_valid(t_input) == 1:
-        # restituisco Invalid se sono stati trovati caratteri invalidi
-        result = "Invalid"
-        return result
 
-    # scorri di nuovo gli elementi
+    # scorri di nuovo gli elementi guardando se gli elementi contengono caratteri non validi
     # NOTA: sarebbe piu' efficiente fare un unico ciclo
 
     read = False

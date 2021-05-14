@@ -93,7 +93,7 @@ I file presenti in questo repository sono:
 
 Le cartelle presenti in questo repository sono:
 
-* **.github**: contiene file di configurazione per dependabot (verifica che le dipendenze dei software siano aggiornate) e per github actions (nella cartella workflows sono presenti le varie configurazioni dei test descritti nella sezione "Test Github Actions")
+* **.github**: contiene file di configurazione per dependabot (verifica che le dipendenze dei software siano aggiornate) e per Github actions (nella cartella workflows sono presenti le varie configurazioni dei test descritti nella sezione "Test Github Actions")
 
 * **.vscode**: contiene il file ```settings.json``` che dice alla estensione "latex-workshop" per Visual Studio Code di non creare automaticamente il PDF ogni volta che si salvano file .tex
     > Questo perche' il ```Makefile``` si occupera' di questo compito

@@ -1,15 +1,18 @@
-35 custom_dict-wordlist.txt
+39 custom_dict-wordlist.txt
 apparira
 artifact
 ascii
 asm
 br
 Ctrl
+dependabot
 editorconfig
 EOF
+EOL
 ezwinports
 gh
 gitattributes
+github
 Github
 gitignore
 hunspell
@@ -31,6 +34,7 @@ rel
 sh
 tex
 tmp
+txt
 UTF
 verra
 vscode

@@ -4,11 +4,14 @@ ascii
 asm
 br
 Ctrl
+dependabot
 editorconfig
 EOF
+EOL
 ezwinports
 gh
 gitattributes
+github
 Github
 gitignore
 hunspell
@@ -30,6 +33,7 @@ rel
 sh
 tex
 tmp
+txt
 UTF
 verra
 vscode

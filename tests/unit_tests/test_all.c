@@ -44,6 +44,50 @@ int main() {
         strcpy(func_name, "test_is_valid_char()\0");
     }
 
+    // test_addizione.c
+
+    printf("Test addizione():\n");
+    func_res = test_addizione();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_addizione()\0");
+    }
+
+    // test_sottrazione.c
+
+    printf("Test sottrazione():\n");
+    func_res = test_sottrazione();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_sottrazione()\0");
+    }
+
+    // test_divisione.c
+
+    printf("Test divisione():\n");
+    func_res = test_divisione();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_divisione()\0");
+    }
+
+    // test_prodotto.c
+
+    printf("Test prodotto():\n");
+    func_res = test_prodotto();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_prodotto()\0");
+    }
+
     // END OF TESTS
 
     if (res == 0) {

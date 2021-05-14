@@ -1,8 +1,10 @@
 
 ASSEMBLY_FOLDER=../../code/assembly/src
-OBJ_FILES=obj/test_is_operator.o obj/is_operator.o obj/test_is_operand.o obj/is_operand.o obj/test_is_valid_char.o obj/is_valid_char.o obj/test_all.o
+OBJ_FILES=obj/test_is_operator.o obj/is_operator.o obj/test_is_operand.o obj/is_operand.o obj/test_is_valid_char.o obj/is_valid_char.o obj/test_addizione.o obj/addizione.o obj/test_sottrazione.o obj/sottrazione.o obj/test_divisione.o obj/divisione.o obj/test_prodotto.o obj/prodotto.o obj/test_all.o
 
 all: clean bin/test_all
+
+# VERIFICA CORRETTEZZA
 
 obj/test_is_operator.o:
 	mkdir -p obj
@@ -30,6 +32,46 @@ obj/is_valid_char.o:
 	mkdir -p obj
 	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/is_valid_char.s -o obj/is_valid_char.o
 
+
+# OPERAZIONI MATEMATICHE
+
+obj/test_addizione.o:
+	mkdir -p obj
+	gcc -g -c -m32 test_addizione.c -o obj/test_addizione.o
+
+obj/addizione.o:
+	mkdir -p obj
+	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/addizione.s -o obj/addizione.o
+
+
+obj/test_sottrazione.o:
+	mkdir -p obj
+	gcc -g -c -m32 test_sottrazione.c -o obj/test_sottrazione.o
+
+obj/sottrazione.o:
+	mkdir -p obj
+	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/sottrazione.s -o obj/sottrazione.o
+
+
+obj/test_divisione.o:
+	mkdir -p obj
+	gcc -g -c -m32 test_divisione.c -o obj/test_divisione.o
+
+obj/divisione.o:
+	mkdir -p obj
+	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/divisione.s -o obj/divisione.o
+
+
+obj/test_prodotto.o:
+	mkdir -p obj
+	gcc -g -c -m32 test_prodotto.c -o obj/test_prodotto.o
+
+obj/prodotto.o:
+	mkdir -p obj
+	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/prodotto.s -o obj/prodotto.o
+
+
+# MAIN
 
 obj/test_all.o:
 	mkdir -p obj

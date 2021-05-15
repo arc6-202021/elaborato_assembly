@@ -5,6 +5,8 @@
 # se il carattere <t_char> contiene una cifra,
 # altrimenti restituisce 1.
 #
+# Il return e' in %EAX.
+#
 # :param char t_char: carattere in input
 # :return int eax: 0 se il carattere contiene operando valido, 1 altrimenti
 
@@ -17,8 +19,8 @@
 is_operand:
     # Memorizza nello stack i registri usati
     pushl %EBP
-    movl %ESP, %EBP  # Imposta EBP alla base dello stack della funzione
-    pushl %EBX       # Memorizza EBX che conterra' il parametro
+    movl %ESP, %EBP           # Imposta EBP alla base dello stack della funzione
+    pushl %EBX                # Memorizza EBX che conterra' il parametro
 
     # Inizio algoritmo per la verifica dell'operando
 
@@ -39,8 +41,7 @@ is_operand_not_below:
                               # so che non e' cifra, restituisci EAX
 
 is_operand_end:
-    # Ripristina stack e esegui return
-    popl %EBX                # Reimposta EBX
-    popl %EBP                # Reimposta EBP
-
+    # Ripristina stack e esegui return (in EAX)
+    popl %EBX                 # Reimposta EBX
+    popl %EBP                 # Reimposta EBP
     ret

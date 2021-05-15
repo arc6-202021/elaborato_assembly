@@ -14,12 +14,12 @@ int test_is_operand() {
     // scorri tutti i caratteri e testali
     for (unsigned char k = 0; k < 255; k++) {
         res = is_operand(k);
-        printf("%c returned %d\n", k, res);
 
         if (k >= '0' && k <= '9') {
             // se il carattere contiene cifra e' un operando
             if (res != 0) {
                 // ma se la funzione restituisce 1 il test fallisce
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }
@@ -27,6 +27,7 @@ int test_is_operand() {
             // se il carattere NON e' una cifra ma la
             // funzione restituisce 0 il test fallisce
             if (res == 0) {
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }

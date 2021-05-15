@@ -14,12 +14,12 @@ int test_is_valid_char() {
     // scorri tutti i caratteri e testali
     for (unsigned char k = 0; k < 255; k++) {
         res = is_valid_char(k);
-        printf("%c returned %d\n", k, res);
 
         if ((k >= '0' && k <= '9') || (k == '-' || k == '+' || k == '*' || k == '/') || k == ' ') {
             // se il carattere contiene e' cifra (operando), o un operatore o uno spazio...
             if (res != 0) {
                 // ...ma la funzione restituisce 1 il test fallisce
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }
@@ -27,6 +27,7 @@ int test_is_valid_char() {
             // se il carattere NON e' cifra (operando), o un operatore o uno spazio ma la
             // funzione restituisce 0 il test fallisce
             if (res == 0) {
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }

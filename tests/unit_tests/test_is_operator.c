@@ -14,12 +14,12 @@ int test_is_operator() {
     // scorri tutti i caratteri e testali
     for (unsigned char k = 0; k < 255; k++) {
         res = is_operator(k);
-        printf("%c returned %d\n", k, res);
 
         if (k == '-' || k == '+' || k == '*' || k == '/') {
             // se il carattere e' un operatore ma la funzione
             // restituisce 1 il test fallisce
             if (res != 0) {
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }
@@ -27,6 +27,7 @@ int test_is_operator() {
             // se il carattere NON e' un operatore ma la
             // funzione restituisce 0 il test fallisce
             if (res == 0) {
+                printf("%c returned %d\n", k, res);
                 success_flag = 1;
             }
         }

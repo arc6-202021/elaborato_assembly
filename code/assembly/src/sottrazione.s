@@ -3,13 +3,13 @@
 .type sottrazione, @function
 
 sottrazione:
-pushl %ebp
-movl %esp,%ebp #imposto esp alla base della pila
+    pushl %ebp
+    movl %esp, %ebp  # imposto esp alla base della pila
 
-#prendo i due parametri del metodo dalla pila ed eseguo la sottrazione
-movl 8(%ebp),%eax
-subl 12(%ebp),%eax
+    #prendo i due parametri del metodo dalla pila ed eseguo la sottrazione
+    movl 8(%ebp), %eax
+    subl 12(%ebp), %eax  # EAX = EAX - 12(%EBP)
 
-popl %ebp
+    popl %ebp
 
-ret
+    ret

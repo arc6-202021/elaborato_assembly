@@ -8,18 +8,19 @@ divisione:
     # Memorizza nello stack i registri usati
     pushl %EBP
     movl %ESP, %EBP  # Imposta EBP alla base dello stack della funzione
+
     pushl %EBX       # Memorizza EBX che conterra' il parametro
-    pushl %EDX
+    pushl %EDX       # Memorizza EDX per poterlo impostare a zero
 
-    # Inizio algoritmo per la verifica dell'operando
+    # Eseguo divisione
 
-    xorl %EDX, %EDX           # EDX = 0
-    movl 8(%EBP), %EAX        # EBX = divisore
-    movl 12(%EBP), %EBX       # EAX = dividendo
+    xorl %EDX, %EDX           # EDX = 0 (bit piu' significativi divisore)
+    movl 8(%EBP), %EAX        # EAX = dividendo
+    movl 12(%EBP), %EBX       # EBX = divisore
 
-    idiv %EBX
+    idiv %EBX  # dividi EDX:EAX / EBX e metti risultato divisione in EAX
+               # (il resto ignorato va in EDX)
 
-is_operand_end:
     # Ripristina stack e esegui return
     popl %EDX
     popl %EBX                # Reimposta EBX

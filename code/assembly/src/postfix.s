@@ -9,25 +9,26 @@ postfix:
     pushl %EBP
     movl %ESP, %EBP
 
-    movl 12(%EBP), %EBX  # EAX = output
-    movl 8(%EBP), %ECX   # ECX = input
-
-    #movl (%EBX), %ECX  # ECX = EBX[0]
-    movl (%ECX), %EDX
+    pushl %EDI
+    pushl %ESI
+    pushl %ECX
     pushl %EDX
-    call is_operator
 
-    addl $48, %EAX
-    movb %AL, (%EBX)   # EBX[0] = return is_operator
-    movb $0, 1(%EBX)   # EBX[1] = \0
+    movl 8(%EBP), %ESI   # ESI = input
+    movl 12(%EBP), %EDI  # EDI = output
 
-    #movb %CL, (%EAX)   # EAX[0] = ECX
-    #movb $50, 1(%EAX)  # EAX[1] = 2
-    #movb $51, 2(%EAX)  # EAX[2] = 3
-    #movb $52, 3(%EAX)  # EAX[3] = 4
-    #movb $0, 4(%EAX)   # EAX[4] = \0
+    xorl %ECX, %ECX           # ECX = 0
+    movl (%ESI, %ECX), %EDX   # EDX = ESI[0]
+
+    movb %DL, (%EDI, %ECX)   # EDI[0] = EDX
+
+    addl $1, %ECX          # ECX = 1
+    movb $0, (%EDI, %ECX)  # EDI[1] = \0
 
     # Riprista registri usati e esegui return
-    popl %EBP
+    popl %EDX
+    popl %ECX
+    popl %ESI
+    popl %EDI
     popl %EBP
     ret

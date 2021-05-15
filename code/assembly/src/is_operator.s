@@ -2,11 +2,13 @@
 # int is_operator(char t_char)
 #
 # Questa funzione restituisce 0
-# se il carattere <t_char> e' un operatore valido,
+# se il carattere <t_char> e' un operatore valido ('+', '-', '*', '/'),
 # altrimenti restituisce 1.
 #
+# Il return e' in %EAX.
+#
 # :param char t_char: stringa con carattere in input
-# :return int eax: 0 se il carattere contiene cifra, 1 altrimenti
+# :return int eax: 0 se il carattere contiene operatore, 1 altrimenti
 
 .data
 
@@ -17,13 +19,13 @@
 is_operator:
     # Memorizza nello stack i registri usati
     pushl %EBP
-    movl %ESP, %EBP  # Imposta EBP alla base dello stack della funzione
-    pushl %EBX       # Memorizza EBX che conterra' il parametro
+    movl %ESP, %EBP           # Imposta EBP alla base dello stack della funzione
+    pushl %EBX                # Memorizza EBX che conterra' il parametro
 
     # Inizio algoritmo per la verifica dell'operatore
 
-    movl $1, %EAX        # EAX = 1
-    movl 8(%EBP), %EBX   # EBX = t_char
+    movl $1, %EAX             # EAX = 1
+    movl 8(%EBP), %EBX        # EBX = t_char
 
     # if t_char == 42: EAX = 0
     cmpb $42, %BL             # prodotto '*'
@@ -53,8 +55,7 @@ is_operator_not_sub:
                               # so che e' divisione, restituisci EAX
 
 is_operator_end:
-    # Ripristina stack e esegui return
-    popl %EBX                # Reimposta EBX
-    popl %EBP                # Reimposta EBP
-
+    # Ripristina stack e esegui return di EAX
+    popl %EBX                 # Reimposta EBX
+    popl %EBP                 # Reimposta EBP
     ret

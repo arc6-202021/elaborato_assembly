@@ -15,13 +15,13 @@ int test_sottrazione() {
     for (int a = -2500; a < 2500; a++) {
         for (int b = -2500; b < 2500; b++) {
             res = sottrazione(a, b);
-            exp_res = a - b;
+            exp_res = b - a;
 
             if (exp_res != res) {
                 // se la sottrazione non da esito atteso,
                 // il test fallisce
                 success_flag = 1;
-                printf("%d - %d = %d (risultato atteso %d)", a, b, res, exp_res);
+                printf("%d - %d = %d (risultato atteso %d)", b, a, res, exp_res);
                 printf(" RISULTATO SBAGLIATO\n");
             }
         }

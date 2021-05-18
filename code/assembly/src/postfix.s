@@ -47,7 +47,7 @@ postfix:
     popl %EDX
     popl %EDX 
     pushl %EAX #salvo il risultato 
-    addl $2,%ECX
+    addl $2,%ECX #scorro in avanti
     jmp postfix_controllo
 
     postfix_sottrazione:
@@ -95,11 +95,7 @@ postfix:
     # -----------------
     # il risultato dell'operazione e' nello stack
     popl %EAX 
-
-    # EDX non serve piu' quindi ci scrivo gli '1'
-    # > in teoria dovrei sapere quanti '1' ho inserito e fare tante pop quante ne servono
     
-
     # ora nello stack dovrebbe essere tutto pronto 
     # per resettare i registri al valore originale e fare il return
     
@@ -107,7 +103,7 @@ postfix:
     addb $48,%AL
     movb %AL, (%EDI)       # se non scrivo i primi byte che contengono \0non potro' mai leggere sul file in output cio' che mi aspetto
     movl $1, %ECX          # metto ecx alla fine della stringa
-   	movb $0, (%EDI, %ECX)  
+    movb $0, (%EDI, %ECX)  
 
     # Riprista registri usati e esegui return
     popl %EDX

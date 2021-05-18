@@ -47,25 +47,34 @@ postfix:
     popl %EDX
     popl %EDX 
     pushl %EAX #salvo il risultato 
-    inc %ECX
+    addl $2,%ECX
     jmp postfix_controllo
 
     postfix_sottrazione:
     call sottrazione
+    #elimino gli ultimi due operandi della pila
+    popl %EDX
+    popl %EDX 
     pushl %EAX #salvo il risultato 
-    inc %ECX
+    addl $2,%ECX
     jmp postfix_controllo
 
     postfix_prodotto:
     call prodotto
+    #elimino gli ultimi due operandi della pila
+    popl %EDX
+    popl %EDX 
     pushl %EAX #salvo il risultato
-    inc %ECX
+    addl $2,%ECX
     jmp postfix_controllo
 
     postfix_divisione:
     call divisione
+    #elimino gli ultimi due operandi della pila
+    popl %EDX
+    popl %EDX 
     pushl %EAX #salvo il risultato
-    inc %ECX
+    addl $2,%ECX
     jmp postfix_controllo
 
     #metodo che salva i vaori nella pila

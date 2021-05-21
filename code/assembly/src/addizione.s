@@ -14,13 +14,13 @@
     .global addizione
 
 addizione:
-    pushl %ebp
-    movl %esp,%ebp  # imposto esp alla base della pila
+    pushl %EBP
+    movl %ESP, %EBP  # imposto esp alla base della pila
 
     # prendo i due parametri del metodo dalla pila ed eseguo l'addizione
-    movl 8(%ebp), %eax
-    addl 12(%ebp), %eax
+    movl 8(%EBP), %EAX   # EAX = <a>
+    addl 12(%EBP), %EAX  # EAX += <b>
 
-    popl %ebp
+    popl %EBP
 
     ret

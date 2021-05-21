@@ -1,15 +1,26 @@
-.global sottrazione
+#
+# int sottrazione(int a, int b)
+#
+# Esegui sottrazione <b> - <a> e restituisce in %EAX il risultato.
+#
+# :param int a: primo parametro
+# :param int b: secondo parametro
+# :return int eax: risultato sottrazione <b> - <a>
 
-.type sottrazione, @function
+.data
+
+.text
+
+    .global sottrazione
 
 sottrazione:
-    pushl %ebp
-    movl %esp, %ebp  # imposto esp alla base della pila
+    pushl %EBP
+    movl %ESP, %EBP  # imposto esp alla base della pila
 
     #prendo i due parametri del metodo dalla pila ed eseguo la sottrazione
-    movl 12(%ebp), %eax
-    subl 8(%ebp), %eax  # EAX = EAX - 8(%EBP)
+    movl 12(%EBP), %EAX # EAX = <b>
+    subl 8(%EBP), %EAX  # EAX -= <a>
 
-    popl %ebp
+    popl %EBP
 
     ret

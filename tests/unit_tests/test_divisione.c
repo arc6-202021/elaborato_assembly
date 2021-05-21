@@ -12,31 +12,31 @@ int test_divisione() {
     int exp_res;           // contiene risultato atteso
     int success_flag = 0;  // 0 e' successo
 
-    for (int a = 0; a < 5000; a++) {
+    for (int b = 0; b < 5000; b++) {
         // divisore negativo
-        for (int b = -2500; b < 0; b++) {
+        for (int a = -2500; a < 0; a++) {
             res = divisione(a, b);
-            exp_res = a / b;
+            exp_res = b / a;
 
             if (exp_res != res) {
                 // se la divisione non da esito atteso,
                 // il test fallisce
                 success_flag = 1;
-                printf("%d / %d = %d (risultato atteso %d)", a, b, res, exp_res);
+                printf("%d / %d = %d (risultato atteso %d)", b, a, res, exp_res);
                 printf(" RISULTATO SBAGLIATO\n");
             }
         }
 
         // divisore positivo (no zero)
-        for (int b = -2500; b > 0; b++) {
+        for (int a = -2500; a > 0; b++) {
             res = divisione(a, b);
-            exp_res = a / b;
+            exp_res = b / a;
 
             if (exp_res != res) {
                 // se la divisione non da esito atteso,
                 // il test fallisce
                 success_flag = 1;
-                printf("%d / %d = %d (risultato atteso %d)", a, b, res, exp_res);
+                printf("%d / %d = %d (risultato atteso %d)", b, a, res, exp_res);
                 printf(" RISULTATO SBAGLIATO\n");
             }
         }

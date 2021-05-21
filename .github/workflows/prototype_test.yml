@@ -22,3 +22,4 @@ jobs:
         python3 postfix_calculator4.py dev
         python3 postfix_calculator5.py dev
         python3 postfix_calculator6.py dev
+        python3 postfix_calculator7.py dev

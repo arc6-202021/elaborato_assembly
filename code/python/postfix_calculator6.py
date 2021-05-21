@@ -382,14 +382,19 @@ def postfix(t_input):
                         invalid = True
                     result = result // 10
 
-            # cambia segno
-            if is_negative:
-                temp_string[ecx] = "-"
-                ecx += 1
-
             # non ci sta il fine stringa: va fuori array
             if ecx > 9:
                 invalid = True
+            else:
+                # c'e' almeno uno spazio per il segno
+                # metti il segno alla fine cosi' appare all'inizio
+                if is_negative:
+                    temp_string[ecx] = "-"
+                    ecx += 1
+
+                    # ora ricontrolla se supera il limite
+                    if ecx > 9:
+                        invalid = True
 
             # se il risultato non sta in 10 caratteri
             if invalid:
@@ -548,10 +553,20 @@ if __name__ == "__main__":
             {"input": "     4  8     3  * +               \n", "expected_output": "28"},
             {"input": "     4  8     3  * 23               \n", "expected_output": "Invalid"},  # 23 non e' un operatore...
             {"input": "0 0 +\n", "expected_output": "0"},
+            {"input": "0 0 -\n", "expected_output": "0"},
+            {"input": "0 0 *\n", "expected_output": "0"},
             {"input": "0 3 /\n", "expected_output": "0"}, # 0 / 3 = 0
             {"input": "10 0 /\n", "expected_output": "Invalid"}, # X / 0 non si puo' calcolare
             {"input": "\n", "expected_output": "Invalid"},
             {"input": "                     \n", "expected_output": "Invalid"},
+
+            # test numeri grandi
+            {"input": "999999999 0 +\0", "expected_output": "999999999"},  # 9 "9" e il terminatore: dovrebbe starci
+            {"input": "9999999999 0 +\0", "expected_output": "Invalid"},  # 10 "9": non ci sta il terminatore
+            {"input": "99999999999 0 +\0", "expected_output": "Invalid"},  # 11 "9": gia' fuori
+            {"input": "-99999999 0 +\0", "expected_output": "-99999999"},  # 8 "9", il "-" e il terminatore: dovrebbe starci
+            {"input": "-999999999 0 +\0", "expected_output": "Invalid"},  # 9 "9" e il "-": non ci sta il terminatore
+            {"input": "-9999999999 0 +\0", "expected_output": "Invalid"},  # 10 "9" e il "-"
 
             # test forniti dal prof
             {"input": "30 2 + 20 -\0", "expected_output": "12"},

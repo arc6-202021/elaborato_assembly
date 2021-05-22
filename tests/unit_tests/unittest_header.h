@@ -22,4 +22,7 @@ extern int test_divisione();
 extern int prodotto(int, int);  // funzione assembly
 extern int test_prodotto();
 
+extern int itoa(int, char *);  // funzione assembly
+extern int test_itoa();
+
 #endif

@@ -88,6 +88,17 @@ int main() {
         strcpy(func_name, "test_prodotto()\0");
     }
 
+    // test_itoa.c
+
+    printf("Test itoa():\n");
+    func_res = test_itoa();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_itoa()\0");
+    }
+
     // END OF TESTS
 
     if (res == 0) {

@@ -99,6 +99,17 @@ int main() {
         strcpy(func_name, "test_itoa()\0");
     }
 
+    // test_write_result.c
+
+    printf("Test write_result():\n");
+    func_res = test_write_result();
+    printf("%s", separator);
+
+    if (func_res != 0) {
+        res = func_res;
+        strcpy(func_name, "test_write_result()\0");
+    }
+
     // END OF TESTS
 
     if (res == 0) {

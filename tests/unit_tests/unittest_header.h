@@ -25,4 +25,7 @@ extern int test_prodotto();
 extern int itoa(int, char *);  // funzione assembly
 extern int test_itoa();
 
+extern void write_result(char *, int , int);
+extern int test_write_result();
+
 #endif

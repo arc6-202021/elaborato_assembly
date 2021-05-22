@@ -1,6 +1,6 @@
 
 ASSEMBLY_FOLDER=../../code/assembly/src
-OBJ_FILES=obj/test_is_operator.o obj/is_operator.o obj/test_is_operand.o obj/is_operand.o obj/test_is_valid_char.o obj/is_valid_char.o obj/test_addizione.o obj/addizione.o obj/test_sottrazione.o obj/sottrazione.o obj/test_divisione.o obj/divisione.o obj/test_prodotto.o obj/prodotto.o obj/test_itoa.o obj/itoa.o obj/test_all.o
+OBJ_FILES=obj/test_is_operator.o obj/is_operator.o obj/test_is_operand.o obj/is_operand.o obj/test_is_valid_char.o obj/is_valid_char.o obj/test_addizione.o obj/addizione.o obj/test_sottrazione.o obj/sottrazione.o obj/test_divisione.o obj/divisione.o obj/test_prodotto.o obj/prodotto.o obj/test_itoa.o obj/itoa.o obj/test_write_result.o obj/write_result.o obj/test_all.o
 
 all: clean bin/test_all bin/test_validations
 
@@ -79,6 +79,14 @@ obj/itoa.o:
 	mkdir -p obj
 	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/itoa.s -o obj/itoa.o
 
+
+obj/test_write_result.o:
+	mkdir -p obj
+	gcc -g -c -m32 test_write_result.c -o obj/test_write_result.o
+
+obj/write_result.o:
+	mkdir -p obj
+	gcc -g -c -m32 $(ASSEMBLY_FOLDER)/write_result.s -o obj/write_result.o
 
 # MAIN
 

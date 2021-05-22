@@ -1,5 +1,5 @@
 
-SOURCE_FILES= src/main.c src/postfix.s src/is_operator.s
+SOURCE_FILES= src/main.c src/postfix.s src/addizione.s src/sottrazione.s src/divisione.s src/prodotto.s src/itoa.s
 
 all: clean bin/postfix
 

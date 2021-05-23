@@ -1,6 +1,15 @@
+# Funzione principale assembly:
+# scorre i caratteri dell'espressione in input,
+# effettua calcoli quando trova operatori usando due elementi in cima allo stack,
+# inserisce in cima allo stack gli operandi,
+# e scrive in output:
+# * Invalid se l'espressione in input e' invalida o se il risultato
+#   della espressione non e' rappresentabile in 10 caratteri
+# * altrimenti scrive il risultato dell'espressione
+
 .data
 
-invalid:
+invalid:     # input invalido. 0: True, 1: False
     .byte 1
 
 .text
@@ -26,6 +35,7 @@ postfix:
     movl 12(%EBP), %EDI  # EDI = output
 
     xorl %ECX, %ECX
+
 
 postfix_loop:
     # while loop principale:
@@ -54,19 +64,19 @@ postfix_loop:
     # TODO: implementare questa parte per gestire piu' cifre e altri casi
     # https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L316-L392
 
-    cmpb $43,(%ESI, %ECX) #quando incontra un +
+    cmpb $43,(%ESI, %ECX) # quando incontra un +
     je postfix_addizione
 
-    cmpb $45,(%ESI, %ECX) #quando incontra un -
+    cmpb $45,(%ESI, %ECX) # quando incontra un -
     je postfix_sottrazione
 
-    cmpb $42,(%ESI, %ECX) #quando incontra un *
+    cmpb $42,(%ESI, %ECX) # quando incontra un *
     je postfix_prodotto
 
-    cmpb $47,(%ESI, %ECX) #quando incontra un /
+    cmpb $47,(%ESI, %ECX) # quando incontra un /
     je postfix_divisione
 
-    cmpb $32,(%ESI, %ECX) #quando incontra uno spazio
+    cmpb $32,(%ESI, %ECX) # quando incontra uno spazio
     je postfix_spazio
 
     # -- ^ fine TODO L316-L392 ^
@@ -81,7 +91,7 @@ postfix_invalid_char:
 
 postfix_incrementa_indice:
     # incrementa indice per scorrere l'espressione
-    # e torna a inizio loop
+    # e torna a inizio loop ( postfix_loop() )
     inc %ECX
     jmp postfix_loop
 
@@ -91,12 +101,12 @@ postfix_addizione:
     # eseguo la addizione e tolgo dallo stack gli operandi
 
     call addizione
-    #elimino gli ultimi due operandi della pila
+    # elimino gli ultimi due operandi dalla pila
     popl %EDX
     popl %EDX
-    pushl %EAX #salvo il risultato
+    pushl %EAX        # salvo il risultato
     inc %EBX          # n_stackelements += 1
-    addl $2,%ECX      # scorro in avanti
+    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
     jmp postfix_loop  # continua ciclo per leggere l'espressione
 
 
@@ -105,12 +115,12 @@ postfix_sottrazione:
     # eseguo la sottrazione e tolgo dallo stack gli operandi
 
     call sottrazione
-    #elimino gli ultimi due operandi della pila
+    # elimino gli ultimi due operandi dalla pila
     popl %EDX
     popl %EDX
-    pushl %EAX #salvo il risultato
+    pushl %EAX        # salvo il risultato
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
-    addl $2,%ECX
+    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
     jmp postfix_loop  # continua ciclo per leggere l'espressione
 
 
@@ -119,12 +129,12 @@ postfix_prodotto:
     # calcolo il prodotto e tolgo dallo stack gli operandi
 
     call prodotto
-    #elimino gli ultimi due operandi della pila
+    # elimino gli ultimi due operandi dalla pila
     popl %EDX
     popl %EDX
-    pushl %EAX #salvo il risultato
+    pushl %EAX        # salvo il risultato
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
-    addl $2,%ECX
+    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
     jmp postfix_loop  # continua ciclo per leggere l'espressione
 
 
@@ -154,14 +164,14 @@ postfix_spazio:
     sub $48,%EDX           # converto l'operando in numero
     pushl %EDX             # metto operando nello stack
     inc %EBX               # n_stackelements += 1 (ho messo operando nello stack)
-    addl $2,%ECX           # scorro al prossimo carattere dopo lo spazio
+    addl $2,%ECX           # passo al prossimo carattere dopo lo spazio
     jmp postfix_loop       # continua il ciclo per leggere l'espressione
 
 
 # ===========================================================================================
 #
 #       GESTIONE SCRITTURA OUTPUT SU FILE
-#       (riga 404 in poi: https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L404)
+#       (equivalente riga 404 in poi nel prototipo: https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L404)
 
 
 postfix_fine_loop:
@@ -210,10 +220,13 @@ postfix_write_appearently_valid_result:
     # sempra che lo stack contenga un risultato valido
     # della espressione: cerco di scriverlo in output
     # chiamando write_result(%EDI, 0, <risultato>)
-    #
-    # TODO: verificare se e' presente un solo elemento nello stack prima di chiamare write_result implementando
-    # il seguente if/else: (adesso si da per scontato che n_stackelements == 1)
-    # https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L413-L423
+
+    # se c'e' piu' di un elemento nello stack,
+    # salta a postfix_too_many_els_stack()
+    cmpl $1, %EBX
+    jg postfix_rm_too_many_els_stack
+
+    # se c'e' un elemento nello stack, questo e' il risultato
 
                        # passa <risultato> della espressione (e' gia' nello stack)
     pushl $0           # passa valid = True
@@ -222,6 +235,41 @@ postfix_write_appearently_valid_result:
     popl %EDI
     popl %EDX
     popl %EAX
+
+    # e' stato scritto il valore: vado a postfix_fine()
+    jmp postfix_fine
+
+
+postfix_rm_too_many_els_stack:
+    # ci sono troppi elementi nello stack:
+    # questo loop li rimuove e poi richiama
+    # postfix_write_invalid_too_many_els_stack()
+
+    # se (n_stackelements) EBX == 0: salta
+    cmpl $0, %EBX
+    je postfix_write_invalid_too_many_els_stack
+
+    popl %EDX  # togli elemento per elemento lo stack
+    dec %EBX   # e decrementa n_stack_elements
+
+    # ripeti fino a non avere piu' elementi nello stack
+    jmp postfix_rm_too_many_els_stack
+
+
+postfix_write_invalid_too_many_els_stack:
+    # c'erano troppi elementi nello stack:
+    # sono stati rimossi e ora bisogna scrivere "Invalid"
+    # nell'array in output
+
+    pushl $0           # passa '<risultato>' che NON verra' scritto
+    pushl $1           # passa valid = False
+    pushl %EDI         # passa il puntatore array in output
+    call write_result
+    popl %EDI
+    popl %EDX
+    popl %EDX
+
+    # vai a postfix_fine()
 
 
 postfix_fine:

@@ -60,10 +60,10 @@ postfix_loop:
     cmpb $45,(%ESI, %ECX) #quando incontra un -
     je postfix_sottrazione
 
-	cmpb $42,(%ESI, %ECX) #quando incontra un *
+    cmpb $42,(%ESI, %ECX) #quando incontra un *
     je postfix_prodotto
 
-	cmpb $47,(%ESI, %ECX) #quando incontra un /
+    cmpb $47,(%ESI, %ECX) #quando incontra un /
     je postfix_divisione
 
     cmpb $32,(%ESI, %ECX) #quando incontra uno spazio

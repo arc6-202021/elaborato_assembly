@@ -22,26 +22,29 @@ write_result:
     movl 8(%EBP), %EDX    # EDX = <out_array>
 
     cmpl $1, %ECX
-    jne valid_result
+    jne write_result_valid_result
     # if valid == 1
     xorl %EAX, %EAX  # EAX = 0
-    jmp checked_valid
+    jmp write_result_checked_valid
 
-valid_result:
+
+write_result_valid_result:
     cmpl $-99999999, %EBX
-    jge check_upper_limit
+    jge write_result_check_upper_limit
     xorl %EAX, %EAX  # EAX = 0
-    jmp checked_valid
+    jmp write_result_checked_valid
 
-check_upper_limit:
+
+write_result_check_upper_limit:
     cmpl $999999999, %EBX
-    jle checked_valid
+    jle write_result_checked_valid
     xorl %EAX, %EAX  # EAX = 0
-    jmp checked_valid
+    jmp write_result_checked_valid
 
-checked_valid:
+
+write_result_checked_valid:
     cmpl $0, %EAX
-    jne convert_result
+    jne write_result_convert_result
     # if %EAX == 0
     movb $73, (%EDX)    # I
     movb $110, 1(%EDX)  # n
@@ -52,10 +55,10 @@ checked_valid:
     movb $100, 6(%EDX)  # d
     movb $0, 7(%EDX)    # \0
 
-    jmp fine
+    jmp write_result_fine
 
 
-convert_result:
+write_result_convert_result:
     pushl %EDX
     pushl %EBX
     call itoa
@@ -63,7 +66,7 @@ convert_result:
     popl %EDX
 
 
-fine:
+write_result_fine:
     popl %EDX
     popl %ECX
     popl %EBX

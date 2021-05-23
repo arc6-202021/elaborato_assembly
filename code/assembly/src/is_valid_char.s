@@ -28,7 +28,7 @@ is_valid_char:
     # if is_operator(t_char) == 0: EAX = 0
     pushl %EBX                      # metti EBX/t_char nello stack (parametro is_operator)
     call is_operator                # richiama is_operator(EBX)
-    cmpb $0, %EAX                   # controlla se il return e' zero
+    cmpl $0, %EAX                   # controlla se il return e' zero
     jne is_valid_char_not_operator  # se e' diverso da zero, non e' operatore
     xorl %EAX, %EAX                 # se e' zero: EAX = 0
     jmp is_valid_char_end           # so che e' operatore, quindi e' valido, restituisci EAX
@@ -36,7 +36,7 @@ is_valid_char:
 is_valid_char_not_operator:
     # if is_operand(t_char) == 0: EAX = 0
     call is_operand                 # nello stack c'e' ancora EBX/t_char, richiama is_operand(EBX)
-    cmpb $0, %EAX                   # controlla se il return e' zero
+    cmpl $0, %EAX                   # controlla se il return e' zero
     jne is_valid_char_not_operand   # se e' diverso da zero, non e' operando
     xorl %EAX, %EAX                 # se e' zero: EAX = 0
     jmp is_valid_char_end           # so che e' operando, quindi e' valido, restituisci EAX

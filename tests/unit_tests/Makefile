@@ -2,7 +2,7 @@
 ASSEMBLY_FOLDER=../../code/assembly/src
 OBJ_FILES=obj/test_is_operator.o obj/is_operator.o obj/test_is_operand.o obj/is_operand.o obj/test_is_valid_char.o obj/is_valid_char.o obj/test_addizione.o obj/addizione.o obj/test_sottrazione.o obj/sottrazione.o obj/test_divisione.o obj/divisione.o obj/test_prodotto.o obj/prodotto.o obj/test_itoa.o obj/itoa.o obj/test_write_result.o obj/write_result.o obj/test_all.o
 
-all: clean bin/test_all bin/test_validations
+all: clean bin/test_all bin/test_validations bin/test_postfix
 
 # VERIFICA CORRETTEZZA
 
@@ -106,6 +106,9 @@ obj/test_validations.o:
 bin/test_validations: obj/is_operand.o obj/is_operator.o obj/is_valid_char.o obj/test_is_operand.o obj/test_is_operator.o obj/test_is_valid_char.o obj/test_validations.o
 	mkdir -p bin
 	gcc -m32 obj/is_operand.o obj/is_operator.o obj/is_valid_char.o obj/test_is_operand.o obj/test_is_operator.o obj/test_is_valid_char.o obj/test_validations.o -o bin/test_validations
+
+bin/test_postfix:
+	gcc -g -m32 test_postfix.c $(ASSEMBLY_FOLDER)/postfix.s $(ASSEMBLY_FOLDER)/write_result.s $(ASSEMBLY_FOLDER)/addizione.s $(ASSEMBLY_FOLDER)/itoa.s $(ASSEMBLY_FOLDER)/divisione.s $(ASSEMBLY_FOLDER)/prodotto.s $(ASSEMBLY_FOLDER)/sottrazione.s $(ASSEMBLY_FOLDER)/is_operator.s $(ASSEMBLY_FOLDER)/is_operand.s $(ASSEMBLY_FOLDER)/is_valid_char.s -o bin/test_postfix
 
 clean:
 	rm -rf obj/*.o

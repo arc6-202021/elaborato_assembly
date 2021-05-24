@@ -17,3 +17,4 @@ jobs:
         cd tests/unit_tests
         make
         ./bin/test_all
+        ./bin/test_postfix

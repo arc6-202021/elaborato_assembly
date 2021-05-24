@@ -12,6 +12,15 @@
 invalid:     # input invalido. 0: True, 1: False
     .byte 1
 
+numeric:     # flag che indica "numerico". 0: True, 1: False
+    .byte 1
+
+numero:      # variabile temporanea che memorizza operando man mano che viene letto l'input
+    .long 0
+
+is_negative: # flag che indica "numero negativo". 0: True, 1: False
+    .byte 1
+
 .text
 
     .global postfix
@@ -30,6 +39,8 @@ postfix:
     pushl %EBX
 
     movb $1, invalid     # invalid = 1
+    movb $1, is_negative # is_negative = 1
+    movl $0, numero      # numero = 0
     xorl %EBX, %EBX      # n_stackelements = 0
     movl 8(%EBP), %ESI   # ESI = input
     movl 12(%EBP), %EDI  # EDI = output
@@ -61,8 +72,48 @@ postfix_loop:
     jne postfix_invalid_char
 
     # carattere valido: effettuo operazioni o recupero operando
-    # TODO: implementare questa parte per gestire piu' cifre e altri casi
-    # https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L316-L392
+    pushl (%ESI, %ECX)
+    call is_operand             # controlla se ESI[ECX] e' operando
+    popl %EDX                   # togli dallo stack il carattere
+    cmpl $0, %EAX
+    jne postfix_is_not_operand  # se ESI[ECX] non e' operando salta
+
+    # carattere e' parte di operando
+    movb $0, numeric  # numeric = 0 (ESI[ECX] e' cifra di un operando)
+
+    # EAX = numero * 10
+    pushl numero
+    pushl $10
+    call prodotto  # EAX = numero * 10
+    popl %EDX
+    popl %EDX
+
+    xorl %EDX, %EDX         # EDX = 0
+    movb (%ESI, %ECX), %DL  # EDX = ESI[ECX] (carattere letto)
+    subl $48, %EDX          # converti EDX carattere in numero
+
+    pushl %EDX
+    pushl %EAX
+    call addizione  # EAX = EAX (numero * 10) + EDX (cifra)
+    popl %EDX
+    popl %EDX
+
+    movl %EAX, numero  # numero = EAX (numero = numero * 10 + cifra)
+    jmp postfix_incrementa_indice
+
+
+postfix_is_not_operand:
+    # il carattere letto non e' operando
+    pushl (%ESI, %ECX)
+    call is_operator
+    popl %EDX            # togli dallo stack il carattere
+    cmpl $0, %EAX
+    jne postfix_is_not_operator
+
+    # il carattere letto e' operatore o segno
+
+    # TODO: scrivere la parte che riconosce se e' operatore oppure se e' segno guardando il carattere successivo
+    # https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L325-L377
 
     cmpb $43,(%ESI, %ECX) # quando incontra un +
     je postfix_addizione
@@ -75,11 +126,49 @@ postfix_loop:
 
     cmpb $47,(%ESI, %ECX) # quando incontra un /
     je postfix_divisione
+    # ^ fine TODO L325-L377 ^
 
-    cmpb $32,(%ESI, %ECX) # quando incontra uno spazio
-    je postfix_spazio
 
-    # -- ^ fine TODO L316-L392 ^
+postfix_is_not_operator:
+    # il carattere letto non e' operatore,
+    # (e non era un operando) allora e' uno spazio
+
+    # se non e' stato letto un operando,
+    # salta a postfix_number_not_numeric()
+    movb numeric, %AL
+    cmpb $0, %AL
+    jne postfix_number_not_numeric
+
+    # l'elemento letto era un numero
+
+    # se il numero non e' negativo salta
+    # a postfix_number_not_negative()
+    movb is_negative, %AL
+    cmpb $0, %AL
+    jne postfix_number_not_negative
+
+    # il numero e' negativo, cambia segno
+    movl numero, %EAX  # EAX = numero
+    neg %EAX           # EAX = -EAX
+    movl %EAX, numero  # numero = EAX
+
+
+postfix_number_not_negative:
+    # inserisco numero nello stack,
+    # incremento n_stackelements e
+    # 'salto' a postfix_number_not_numeric()
+    pushl numero  # mette operando nello stack
+    inc %EBX      # incrementa n_stackelements
+
+    # continua a postfix_number_not_numeric()
+
+
+postfix_number_not_numeric:
+    # resetto numeric, is_negative e numero ai valori iniziali
+    # e salta a postfix_incrementa_indice()
+    movb $1, numeric      # numeric = 1
+    movb $1, is_negative  # is_negative = 1
+    movl $0, numero       # numero = 0
     jmp postfix_incrementa_indice
 
 
@@ -105,9 +194,8 @@ postfix_addizione:
     popl %EDX
     popl %EDX
     pushl %EAX        # salvo il risultato
-    inc %EBX          # n_stackelements += 1
-    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
-    jmp postfix_loop  # continua ciclo per leggere l'espressione
+    dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
+    jmp postfix_incrementa_indice
 
 
 postfix_sottrazione:
@@ -120,8 +208,7 @@ postfix_sottrazione:
     popl %EDX
     pushl %EAX        # salvo il risultato
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
-    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
-    jmp postfix_loop  # continua ciclo per leggere l'espressione
+    jmp postfix_incrementa_indice
 
 
 postfix_prodotto:
@@ -134,8 +221,7 @@ postfix_prodotto:
     popl %EDX
     pushl %EAX        # salvo il risultato
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
-    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
-    jmp postfix_loop  # continua ciclo per leggere l'espressione
+    jmp postfix_incrementa_indice
 
 
 postfix_divisione:
@@ -149,23 +235,7 @@ postfix_divisione:
 
     pushl %EAX        # salvo il risultato
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
-    addl $2,%ECX      # salta un carattere (spazio) e vai al successivo
-    jmp postfix_loop  # continua ciclo per leggere l'espressione
-
-
-postfix_spazio:
-    # E' stato trovato uno spazio:
-    # prendo operando della posizione precedente
-    # e lo metto nella pila.
-
-    dec %ECX               # ECX -= 1
-    xorl %EDX, %EDX        # EDX = 0
-    movb (%ESI,%ECX), %DL  # prelevo l'operando
-    sub $48,%EDX           # converto l'operando in numero
-    pushl %EDX             # metto operando nello stack
-    inc %EBX               # n_stackelements += 1 (ho messo operando nello stack)
-    addl $2,%ECX           # passo al prossimo carattere dopo lo spazio
-    jmp postfix_loop       # continua il ciclo per leggere l'espressione
+    jmp postfix_incrementa_indice
 
 
 # ===========================================================================================
@@ -221,10 +291,10 @@ postfix_write_appearently_valid_result:
     # della espressione: cerco di scriverlo in output
     # chiamando write_result(%EDI, 0, <risultato>)
 
-    # se c'e' piu' di un elemento nello stack,
+    # se non si sono elementi o c'e' piu' di un elemento nello stack,
     # salta a postfix_too_many_els_stack()
     cmpl $1, %EBX
-    jg postfix_rm_too_many_els_stack
+    jne postfix_rm_too_many_els_stack
 
     # se c'e' un elemento nello stack, questo e' il risultato
 
@@ -241,7 +311,7 @@ postfix_write_appearently_valid_result:
 
 
 postfix_rm_too_many_els_stack:
-    # ci sono troppi elementi nello stack:
+    # ci sono troppi elementi nello stack: (oppure nessuno)
     # questo loop li rimuove e poi richiama
     # postfix_write_invalid_too_many_els_stack()
 

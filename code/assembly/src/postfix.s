@@ -112,8 +112,55 @@ postfix_is_not_operand:
 
     # il carattere letto e' operatore o segno
 
-    # TODO: scrivere la parte che riconosce se e' operatore oppure se e' segno guardando il carattere successivo
-    # https://github.com/arc6-202021/elaborato_assembly/blob/main/code/python/postfix_calculator8.py#L325-L377
+    pushl 1(%ESI, %ECX)  # metti ESI[ECX+1] nello stack
+    call is_operand      # is_operand(ESI[ECX+1])
+    popl %EDX            # rimuovi operando dallo stack
+
+    cmpl $0, %EAX
+    jne postfix_next_char_is_not_operand  # se non e' operando salta
+
+    cmpb $45,(%ESI, %ECX)      # ESI[ECX] == '-' ?
+    jne postfix_segno_non_meno # salta se non e' meno
+
+    # e' segno meno
+    movb $0, is_negative          # trovato segno '-', is_negative = 0 (True)
+    jmp postfix_incrementa_indice # passa al prossimo carattere
+
+
+postfix_segno_non_meno:
+    # non e' segno meno: puo' essere '+', '*' o '/'
+
+    cmpb $43,(%ESI, %ECX)         # ESI[ECX] == '+' ?
+    je postfix_incrementa_indice  # se e' '+' vai al prossimo carattere
+
+    # il segno non e' un +, segno invalido
+    movb $0, invalid               # ho trovato '*' o '/', segno invalido
+    jmp postfix_incrementa_indice  # vai al prossimo carattere
+
+
+postfix_next_char_is_not_operand:
+    # il prossimo carattere non e' operando:
+    # potrebbe essere un operatore
+
+    cmpb $32, 1(%ESI, %ECX) # se prossimo carattere e' spazio
+    je postfix_is_operator  # allora il carattere attuale e' operatore
+
+    cmpb $10, 1(%ESI, %ECX) # se prossimo carattere e' \n
+    je postfix_is_operator  # allora il carattere attuale e' operatore
+
+    cmpb $0, 1(%ESI, %ECX)  # se prossimo carattere e' \0
+    je postfix_is_operator  # allora il carattere attuale e' operatore
+
+    # non e' operatore
+    jmp postfix_incrementa_indice  # non e' operatore, vai al carattere successivo
+
+
+postfix_is_operator:
+    # ho trovato un operatore, effettuo il calcolo
+    # relativo al carattere trovato
+
+    cmpl $1, %EBX  # verifica quanti elementi sono nello stack
+    jle postfix_not_enough_operands  # non ci sono abbastanza operandi nello stack per fare il calcolo
 
     cmpb $43,(%ESI, %ECX) # quando incontra un +
     je postfix_addizione
@@ -126,7 +173,14 @@ postfix_is_not_operand:
 
     cmpb $47,(%ESI, %ECX) # quando incontra un /
     je postfix_divisione
-    # ^ fine TODO L325-L377 ^
+
+
+postfix_not_enough_operands:
+    # non ho abbastanza operandi nello stack,
+    # l'input e' invalido
+
+    movb $0, invalid  # invalid = 0 (True)
+    jmp postfix_incrementa_indice
 
 
 postfix_is_not_operator:
@@ -227,7 +281,14 @@ postfix_prodotto:
 postfix_divisione:
     # E' stato trovato "/":
     # eseguo la divisione e tolgo dallo stack gli operandi
+    # > prima verifico se la divisione e' per zero
+    popl %EDX      # EDX = operando destro
+    cmpl $0, %EDX  # EDX == 0 ?
+    je postfix_divide_by_zero  # se e' zero salta
 
+    # l'operando destro non e' zero
+
+    pushl %EDX  # rimetti l'operando destro nello stack
     call divisione
     # elimino gli ultimi due operandi della pila
     popl %EDX
@@ -237,6 +298,14 @@ postfix_divisione:
     dec %EBX          # n_stackelements -= 1 (ne ho tolti due e messo 1)
     jmp postfix_incrementa_indice
 
+
+postfix_divide_by_zero:
+    # divisione per zero: metto invalid a True
+    # e decremento di uno gli elementi dello stack
+
+    dec %EBX          # n_stackelements -= 1 (lo avevo tolto per verificare se l'operando era zero)
+    movb $0, invalid  # invalid = 0 (True)
+    jmp postfix_incrementa_indice
 
 # ===========================================================================================
 #

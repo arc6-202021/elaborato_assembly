@@ -8,3 +8,6 @@ spellcheck.temp
 # Ignora cartelle con file oggetto e binari
 **/bin/
 **/obj/
+
+# Ignora file output temporaneo test E2E
+tests/e2e_tests/tempout.txt

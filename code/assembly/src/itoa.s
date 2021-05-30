@@ -58,7 +58,7 @@ itoa_continua_a_dividere:
 
     movb itoa_is_negative, %AL  # AL = itoa_is_negative
     cmpb $0, %AL                # se AL != 0 (<num> positivo)
-    jne itoa_stampa             # salta a itoa_stampa()
+    jne itoa_scrivi             # salta a itoa_scrivi()
 
     # numero negativo, metti meno in prima posizione
     # e sposta gli indici per scorrere EDI
@@ -66,7 +66,7 @@ itoa_continua_a_dividere:
     movb $45, (%EDI, %EBX)      # EDI[EBX] = '-' (EDI[0] = '-')
     incl %EBX                   # EBX++
     incl %ECX                   # ECX++
-    jmp itoa_stampa             # salta a itoa_stampa()
+    jmp itoa_scrivi             # salta a itoa_scrivi()
 
 
 itoa_dividi:
@@ -81,7 +81,7 @@ itoa_dividi:
     jmp	itoa_continua_a_dividere
 
 
-itoa_stampa:
+itoa_scrivi:
     # Tutte le cifre sono nello stack,
     # questa funzione recupera dallo stack le cifre,
     # le converte in carattere e le inserisce in EDI
@@ -94,7 +94,7 @@ itoa_stampa:
     movb %AL, (%EDI, %EBX)  # EDI[EBX] = EAX (aggiungo cifra alla stringa)
     incl %EBX               # incrementa di 1 l'indice
 
-    jmp itoa_stampa         # ritorna all'etichetta itoa_stampa per stampare
+    jmp itoa_scrivi         # ritorna all'etichetta itoa_scrivi per stampare
                             # il prossimo carattere.
 
 

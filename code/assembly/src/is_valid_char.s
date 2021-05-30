@@ -49,8 +49,9 @@ is_valid_char_not_operand:
                               # so che e' spazio, quindi e' valido, restituisci EAX
 
 is_valid_char_end:
-    # Ripristina stack e esegui return
     popl %EBX                # Rimuovo EBX/t_char dallo stack
+
+    # Ripristina stack e esegui return
     popl %EBX                # Reimposta EBX del chiamante
     popl %EBP                # Reimposta EBP del chiamante
 

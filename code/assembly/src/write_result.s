@@ -1,3 +1,14 @@
+#
+# void write_result(int result, int valid, char * out_array)
+#
+# Scrive in <out_array>:
+# * "Invalid" se valid = 1 oppure <result> non e' rappresentabile in 10 caratteri
+# * <result> se valid = 0 e <result> e' rappresentabile in 10 caratteri
+# > La funzione itoa() si occupa di convertire <result> in stringa e di scriverla in <out_array>
+#
+# :param int result: risultato del calcolo (o valore 'finto' in caso di valid = 1)
+# :param int valid: se uguale a 0 viene scritto <result> in formato stringa, altrimenti viene scritto "Invalid"
+# :param char * out_array: array/stringa su cui scrivere l'output
 
 .data
 
@@ -21,31 +32,46 @@ write_result:
     movl 12(%EBP), %ECX   # ECX = <valid>
     movl 8(%EBP), %EDX    # EDX = <out_array>
 
-    cmpl $1, %ECX
-    jne write_result_valid_result
-    # if valid == 1
-    xorl %EAX, %EAX  # EAX = 0
+    cmpl $1, %ECX                  # se ECX != 1, <result> sembra valido
+    jne write_result_valid_result  # salta all'etichetta
+
+    # if valid == 1 (valid = False)
+    xorl %EAX, %EAX                 # EAX = 0 (invalid = True)
     jmp write_result_checked_valid
 
 
 write_result_valid_result:
+    # Il risultato sembra valido,
+    # verifico se il limite inferiore e' rispettato
+    # per poter rappresentare <result> in 10 caratteri
     cmpl $-99999999, %EBX
     jge write_result_check_upper_limit
-    xorl %EAX, %EAX  # EAX = 0
+
+    # limite inferiore non rispettato
+    xorl %EAX, %EAX                     # EAX = 0 (invalid = True)
     jmp write_result_checked_valid
 
 
 write_result_check_upper_limit:
+    # Il risultato sembra valido,
+    # verifico se il limite superiore e' rispettato
+    # per poter rappresentare <result> in 10 caratteri
     cmpl $999999999, %EBX
     jle write_result_checked_valid
-    xorl %EAX, %EAX  # EAX = 0
+
+    # limite superiore non rispettato
+    xorl %EAX, %EAX                 # EAX = 0 (invalid = True)
     jmp write_result_checked_valid
 
 
 write_result_checked_valid:
+    # Ho verificato se <result> e' valido
+    # oppure no valutando <valid> e i limiti
+    # per rappresentare in 10 caratteri <result>
     cmpl $0, %EAX
     jne write_result_convert_result
-    # if %EAX == 0
+
+    # if %EAX == 0 (invalid = True)
     movb $73, (%EDX)    # I
     movb $110, 1(%EDX)  # n
     movb $118, 2(%EDX)  # v
@@ -59,9 +85,11 @@ write_result_checked_valid:
 
 
 write_result_convert_result:
-    pushl %EDX
-    pushl %EBX
-    call itoa
+    # <result> e' valido,
+    # richiamo itoa() per scriverlo
+    pushl %EDX  # parametro <out_array>
+    pushl %EBX  # parametro <result>
+    call itoa   # itoa(result, out_array)
     popl %EBX
     popl %EDX
 

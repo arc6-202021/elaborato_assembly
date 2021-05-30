@@ -26,7 +26,7 @@ divisione:
 
     # Eseguo divisione
 
-    xorl %EDX, %EDX           # EDX = 0 (bit piu' significativi divisore)
+    xorl %EDX, %EDX           # EDX = 0 (bit piu' significativi dividendo)
     movl 12(%EBP), %EAX       # EAX = <b> dividendo
     movl 8(%EBP), %EBX        # EBX = <a> divisore
 

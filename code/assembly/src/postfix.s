@@ -1,3 +1,6 @@
+#
+# void postfix(char * input, char * output)
+#
 # Funzione principale assembly:
 # scorre i caratteri dell'espressione in input,
 # effettua calcoli quando trova operatori usando due elementi in cima allo stack,
@@ -6,6 +9,9 @@
 # * Invalid se l'espressione in input e' invalida o se il risultato
 #   della espressione non e' rappresentabile in 10 caratteri
 # * altrimenti scrive il risultato dell'espressione
+#
+# :param char * input: stringa input (contenuto file input + '\0')
+# :param char * output: stringa output (verra' scritta nel file output dal codice C)
 
 .data
 
@@ -37,15 +43,15 @@ postfix:
     pushl %ECX
     pushl %EDX
     pushl %EBX
+    pushl %EAX
 
     movb $1, invalid     # invalid = 1
     movb $1, is_negative # is_negative = 1
     movl $0, numero      # numero = 0
     xorl %EBX, %EBX      # n_stackelements = 0
-    movl 8(%EBP), %ESI   # ESI = input
-    movl 12(%EBP), %EDI  # EDI = output
-
-    xorl %ECX, %ECX
+    movl 8(%EBP), %ESI   # ESI = <input>
+    movl 12(%EBP), %EDI  # EDI = <output>
+    xorl %ECX, %ECX      # ECX = 0 (indice per scorrere ESI)
 
 
 postfix_loop:
@@ -53,23 +59,22 @@ postfix_loop:
     # finche' invalid != 0 e carattere diverso
     # da \0 e \n scorri l'espressione in input
 
-    cmpb $0,(%ESI, %ECX)  # quando legge \0 termina loop
+    cmpb $0,(%ESI, %ECX)        # quando legge \0 termina loop
     je postfix_fine_loop
 
-    cmpb $10,(%ESI, %ECX) # quando legge \n termina loop
+    cmpb $10,(%ESI, %ECX)       # quando legge \n termina loop
     je postfix_fine_loop
 
-    cmpb $0, invalid      # se l'espressione in input e' invalida salta fuori dal loop
+    cmpb $0, invalid            # se l'espressione in input e' invalida salta fuori dal loop
     je postfix_fine_loop
 
     # controlla se e' un carattere valido
     pushl (%ESI, %ECX)
     call is_valid_char
-    popl %EDX            # togli dallo stack il carattere
+    popl %EDX                   # togli dallo stack il carattere
     cmpl $0, %EAX
 
-    # se non lo e' salta a postfix_invalid_char()
-    jne postfix_invalid_char
+    jne postfix_invalid_char    # se non e' valido salta a postfix_invalid_char()
 
     # carattere valido: effettuo operazioni o recupero operando
     pushl (%ESI, %ECX)
@@ -413,6 +418,7 @@ postfix_write_invalid_too_many_els_stack:
 
 postfix_fine:
     # Ripristina registri usati e esegui return
+    popl %EAX
     popl %EBX
     popl %EDX
     popl %ECX

@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define NPOSTFIXTESTS 48
+#define NPOSTFIXTESTS 47
 
 extern void postfix(char *, char *);
 
@@ -72,12 +72,11 @@ int main() {
         {"                     \n\0", "Invalid\0"},
 
         // test numeri grandi
-        {"999999999 0 +\0", "999999999\0"},  // 9 "9" e il terminatore: dovrebbe starci
-        {"9999999999 0 +\0", "Invalid\0"},   // 10 "9": non ci sta il terminatore
-        {"99999999999 0 +\0", "Invalid\0"},  // 11 "9": gia' fuori
-        {"-99999999 0 +\0", "-99999999\0"},  // 8 "9", il "-" e il terminatore: dovrebbe starci
-        {"-999999999 0 +\0", "Invalid\0"},   // 9 "9" e il "-": non ci sta il terminatore
-        {"-9999999999 0 +\0", "Invalid\0"},  // 10 "9" e il "-"
+        {"999999999 0 +\0", "999999999\0"},      // 9 "9" e il terminatore: 10 caratteri in tutto
+        {"2147483647 0 +\0", "2147483647\0"},    // numero piu' grande rappresentabile in 32 bit
+        {"-99999999 0 +\0", "-99999999\0"},      // 8 "9", il "-" e il terminatore: 10 caratteri
+        {"-999999999 0 +\0", "-999999999\0"},    // 9 "9" e il "-" e il terminatore: 11 caratteri
+        {"-2147483648 0 +\0", "-2147483648\0"},  // numero piu' piccolo rappresentabile in 32 bit
 
         // test forniti dal prof
         {"30 2 + 20 -\0", "12\0"},

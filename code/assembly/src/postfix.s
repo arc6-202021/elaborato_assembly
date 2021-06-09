@@ -97,13 +97,30 @@ postfix_loop:
     movb (%ESI, %ECX), %DL  # EDX = ESI[ECX] (carattere letto)
     subl $48, %EDX          # converti EDX carattere in numero
 
-    pushl %EDX
-    pushl %EAX
-    call addizione  # EAX = EAX (numero * 10) + EDX (cifra)
+    pushl %EAX  # metti nello stack numero * 10
+    pushl %EDX  # metti nello stack cifra
+
+    movb is_negative, %AL          # AL = is_negative
+    cmpb $0, %AL                   # AL == 0 ?
+    je postfix_number_is_negative  # salta se e' negativo
+
+    call addizione                 # numero positivo, EAX = EAX (numero * 10) + EDX (cifra)
+    jmp postfix_save_new_number    # salta per memorizzare il nuovo numero temporaneo
+
+
+postfix_number_is_negative:
+    # Richiama sottrazione per eseguire algoritmo:
+    # EAX = EAX (numero * 10) - EDX (cifra) quando numero e' negativo
+    call sottrazione
+
+
+postfix_save_new_number:
+    # dopo aver aggiunto la cifra al numero occorre aggiornare
+    # la variabile numero
     popl %EDX
     popl %EDX
 
-    movl %EAX, numero  # numero = EAX (numero = numero * 10 + cifra)
+    movl %EAX, numero  # numero = EAX (numero = numero * 10 + cifra, numero positivo | - cifra se e' negativo)
     jmp postfix_incrementa_indice
 
 
@@ -200,19 +217,6 @@ postfix_is_not_operator:
 
     # l'elemento letto era un numero
 
-    # se il numero non e' negativo salta
-    # a postfix_number_not_negative()
-    movb is_negative, %AL
-    cmpb $0, %AL
-    jne postfix_number_not_negative
-
-    # il numero e' negativo, cambia segno
-    movl numero, %EAX  # EAX = numero
-    neg %EAX           # EAX = -EAX
-    movl %EAX, numero  # numero = EAX
-
-
-postfix_number_not_negative:
     # inserisco numero nello stack,
     # incremento n_stackelements e
     # 'salto' a postfix_number_not_numeric()

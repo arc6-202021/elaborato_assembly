@@ -10,7 +10,7 @@
 .data
 
 itoa_is_negative:  # flag: indica che <num> e' negativo quando vale 0
-    .byte 1
+    .byte 0
 
 .text
     .global itoa
@@ -29,29 +29,30 @@ itoa:
     # inizia algoritmo per convertire intero in stringa
     movl 8(%EBP), %EAX            # EAX = <num>
     movl 12(%EBP), %EDI           # EDI = <output>
-    movb $1, itoa_is_negative     # itoa_is_negative = 1 (<num> e' positivo)
+    movb $0, itoa_is_negative     # itoa_is_negative = 0 (<num> e' negativo)
                                   # (utile quando un programma usa un ciclo:
                                   # ogni volta che la funzione viene richiamata itoa_is_negative NON viene impostato a 1 automaticamente)
     movl $0, %ECX                 # ECX = 0 (contatore numero cifre memorizzate nello stack)
 
-    cmpl $0, %EAX                 # se EAX >= 0
-    jge itoa_continua_a_dividere  # salta a itoa_continua_a_dividere()
+    cmpl $0, %EAX                 # se EAX < 0
+    jl itoa_continua_a_dividere   # salta a itoa_continua_a_dividere()
 
-    movb $0, itoa_is_negative     # itoa_is_negative = 0 (True)
+    movb $1, itoa_is_negative     # itoa_is_negative = 1 (False)
     neg %EAX                      # EAX = -EAX (cambia segno)
 
 
 itoa_continua_a_dividere:
     # Richiama itoa_dividi() per dividere per 10 EAX
-    # finche' EAX < 10, poi inserisci nello stack l'ultima
+    # finche' EAX <= -10, poi inserisci nello stack l'ultima
     # cifra e se il numero e' negativo imposta EDI[0] = '-'
 
-    cmpl $10, %EAX              # se EAX >= 10
-    jge itoa_dividi             # salta a itoa_dividi()
+    cmpl $-10, %EAX             # se EAX <= -10
+    jle itoa_dividi             # salta a itoa_dividi()
 
     # -- tutte le cifre meno l'ultima sono nello stack
 
-    pushl %EAX                  # salva nello stack EAX, l'ultima cifra
+    neg %EAX                    # cambia segno all'ultima cifra
+    pushl %EAX                  # salva nello stack l'ultima cifra
     incl %ECX                   # ECX++
 
     xorl %EBX, %EBX             # EBX = 0 (usato per scorrere EDI)
@@ -75,7 +76,9 @@ itoa_dividi:
 
     movl $0, %EDX       # EDX = 0 (primi 32 bit dividendo)
     movl $10, %EBX      # EBX = 10 (divisore)
-    divl %EBX           # EAX = EDX:EAX / EBX | EDX = EDX:EAX % EBX (EBX = 10)
+    cdq                 # estendo il segno di EAX su EDX
+    idivl %EBX          # EAX = EDX:EAX / EBX | EDX = EDX:EAX % EBX (EBX = 10)
+    neg %EDX            # EDX = -EDX (risultato di -x/10 con x positivo e' -y)
     pushl %EDX          # memorizza cifra nello stack
     incl %ECX           # ECX++ (incrementa contatore cifre)
     jmp	itoa_continua_a_dividere

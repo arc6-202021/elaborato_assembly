@@ -25,8 +25,6 @@ write_result:
     pushl %ECX
     pushl %EDX
 
-    movl $1, %EAX  # EAX = invalid = 1
-
     # prendo i due parametri del metodo dalla pila ed eseguo il prodotto con segno
     movl 16(%EBP), %EBX   # EBX = <result>
     movl 12(%EBP), %ECX   # ECX = <valid>

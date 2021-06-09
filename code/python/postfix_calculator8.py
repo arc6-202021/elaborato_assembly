@@ -54,7 +54,7 @@ def main_c(t_input):
     :param str t_input: stringa in input con espressione senza terminatore (simula la lettura file del main.c)
     :return list edi: lista con output (invalid o risultato espressione)
     """
-    edi = ["\0", "", "", "", "", "", "", "", "", ""]
+    edi = ["\0", "", "", "", "", "", "", "", "", "", "", ""]
     postfix(t_input + "\0", edi)
     return edi
 
@@ -240,13 +240,6 @@ def write_result(edi, valid, result):
     if valid == 1:
         # non e' valido
         invalid = 0
-    else:
-        # sembra valido ma devo controllare il range del risultato
-        if result < -99999999:
-            invalid = 0
-
-        if result > 999999999:
-            invalid = 0
 
     if invalid == 0:
         edi[0] = "I"
@@ -319,7 +312,10 @@ def postfix(t_input, edi):
                 # sto leggendo numero positivo
                 numeric = True
                 cifra = ord(t_input[i]) - 48
-                numero = numero * 10 + cifra
+                if is_negative:
+                    numero = numero * 10 - cifra
+                else:
+                    numero = numero * 10 + cifra
                 print("numero letto fino ad ora:", numero)
             elif is_operator(t_input[i]) == 0:
                 # sto leggendo operatore o segno
@@ -381,8 +377,6 @@ def postfix(t_input, edi):
                 print("ho letto spazio...", end="")
                 # se avevo trovato numero lo metto nello stack
                 if numeric:
-                    if is_negative:
-                        numero = - numero
                     print("ho terminato di leggere un numero", end="")
                     stack.push(numero)
                     n_stackelements += 1
@@ -422,8 +416,8 @@ def postfix(t_input, edi):
 
             write_result(edi, 1, 0)  # scrivi invalid
 
-    # solo in python controllo se la lunghezza dell'array e' 10 e converto l'array in stringa
-    assert len(edi) == 10, "edi dovrebbe essere di 10 caratteri"
+    # solo in python controllo se la lunghezza dell'array e' 12 e converto l'array in stringa
+    assert len(edi) == 12, "edi dovrebbe essere di 12 caratteri"
     print(edi)
     result = "".join(edi).split("\0")[0]
     print("risultato finale: ", result)
@@ -540,12 +534,11 @@ if __name__ == "__main__":
             {"input": "                     \n", "expected_output": "Invalid"},
 
             # test numeri grandi
-            {"input": "999999999 0 +\0", "expected_output": "999999999"},  # 9 "9" e il terminatore: dovrebbe starci
-            {"input": "9999999999 0 +\0", "expected_output": "Invalid"},  # 10 "9": non ci sta il terminatore
-            {"input": "99999999999 0 +\0", "expected_output": "Invalid"},  # 11 "9": gia' fuori
-            {"input": "-99999999 0 +\0", "expected_output": "-99999999"},  # 8 "9", il "-" e il terminatore: dovrebbe starci
-            {"input": "-999999999 0 +\0", "expected_output": "Invalid"},  # 9 "9" e il "-": non ci sta il terminatore
-            {"input": "-9999999999 0 +\0", "expected_output": "Invalid"},  # 10 "9" e il "-"
+            {"input": "999999999 0 +\0", "expected_output": "999999999"},      # 9 "9" e il terminatore: 10 caratteri in tutto
+            {"input": "2147483647 0 +\0", "expected_output": "2147483647"},    # numero piu' grande rappresentabile in 32 bit
+            {"input": "-99999999 0 +\0", "expected_output": "-99999999"},      # 8 "9", il "-" e il terminatore: 10 caratteri
+            {"input": "-999999999 0 +\0", "expected_output": "-999999999"},    # 9 "9" e il "-" e il terminatore: 11 caratteri
+            {"input": "-2147483648 0 +\0", "expected_output": "-2147483648"},  # numero piu' piccolo rappresentabile in 32 bit
 
             # test forniti dal prof
             {"input": "30 2 + 20 -\0", "expected_output": "12"},
@@ -556,7 +549,7 @@ if __name__ == "__main__":
         ]
         boold = False
         for td in test_data:
-            edi = ["\0", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+            edi = ["\0", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
             print("TEST INPUT:", td["input"])
             postfix(td["input"], edi)
             res = "".join(edi).split("\0")[0]

@@ -74,7 +74,6 @@ itoa_dividi:
     # Ricava l'ultima cifra da EAX (EAX % 10),
     # la inserisce nello stack e impone EAX /= 10.
 
-    movl $0, %EDX       # EDX = 0 (primi 32 bit dividendo)
     movl $10, %EBX      # EBX = 10 (divisore)
     cdq                 # estendo il segno di EAX su EDX
     idivl %EBX          # EAX = EDX:EAX / EBX | EDX = EDX:EAX % EBX (EBX = 10)

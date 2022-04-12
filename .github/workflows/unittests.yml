@@ -8,10 +8,10 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install gcc-multilib
       run: |
-        sudo apt-get install gcc-multilib -y
+        sudo apt-get update && sudo apt-get install gcc-multilib -y
     - name: Unit test
       run: |
         cd tests/unit_tests

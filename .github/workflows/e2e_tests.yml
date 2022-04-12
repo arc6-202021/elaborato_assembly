@@ -8,14 +8,14 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install Python 3.8
       uses: actions/setup-python@v3
       with:
         python-version: 3.8
     - name: Install gcc-multilib
       run: |
-        sudo apt-get install gcc-multilib -y
+        sudo apt-get update && sudo apt-get install gcc-multilib -y
     - name: run E2E test
       run: |
         cd tests/e2e_tests

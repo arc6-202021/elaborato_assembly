@@ -19,7 +19,7 @@ jobs:
         pdflatex -interaction=nonstopmode --output-dir=../docs_build --shell-escape Relazione.tex
 
     - name: Archive documentation
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Relazione.pdf
         path: docs_build/Relazione.pdf

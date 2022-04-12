@@ -15,7 +15,7 @@ jobs:
         python-version: 3.8
     - name: Install gcc-multilib
       run: |
-        sudo apt-get install gcc-multilib -y
+        sudo apt-get update && sudo apt-get install gcc-multilib -y
     - name: run E2E test
       run: |
         cd tests/e2e_tests

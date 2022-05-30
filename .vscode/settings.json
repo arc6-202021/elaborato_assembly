@@ -1,4 +1,0 @@
-{
-    // build automatica gestita dal Makefile
-    "latex-workshop.latex.autoBuild.run": "never"
-}

@@ -11,7 +11,6 @@ all'elaborato assembly per architettura degli elaboratori (anno 2020/2021).
 
 |Badge|Descrizione|
 |-----|-----------|
-|[![Relazione](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/relazione.yml)|Verifica che la build della documentazione sia andata a buon fine (artifact scaricabile da gh actions)|
 |[![Unit tests](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/unittests.yml)|Si assicura che le singole funzioni assembly restituiscano il risultato atteso|
 |[![Prototype test](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/prototype_test.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/prototype_test.yml)|Verifica il funzionamento dei prototipi scritti in Python|
 |[![E2E tests](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/e2e_tests.yml/badge.svg)](https://github.com/arc6-202021/elaborato_assembly/actions/workflows/e2e_tests.yml)|Si assicura che l'eseguibile postfix restituisca il risultato atteso lato end user|
